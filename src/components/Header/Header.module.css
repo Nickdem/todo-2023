@@ -1,0 +1,31 @@
+.header {
+  background-color: var(--main-green);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.header-logo {
+  font-size: 36px;
+  line-height: 48px;
+  font-weight: 700;
+}
+.header-navigation {
+}
+.navigation {
+}
+.navigation-list {
+  display: flex;
+  column-gap: 10px;
+}
+.navigation-item {
+}
+.navigation-link {
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 400;
+}
