@@ -1,0 +1,28 @@
+.tag {
+  width: 40px;
+  height: 20px;
+  border-radius: 2px;
+  box-shadow: 0 0 4px var(--main-black);
+}
+
+.tag--all {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(9, 121, 10, 1) 50%,
+    rgba(6, 0, 255, 1) 100%
+  );
+}
+
+.tag--red {
+  background-color: var(--main-red);
+}
+
+.tag--green {
+  background-color: var(--main-green);
+}
+
+.tag--blue {
+  background-color: var(--main-blue);
+}

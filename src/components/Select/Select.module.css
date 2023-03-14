@@ -1,0 +1,19 @@
+.select {
+  width: 150px;
+  position: relative;
+  background-color: var(--main-grey);
+}
+
+.select-value {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 10px;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.44s ease;
+}
+
+.select-value:hover {
+  background-color: var(--main-gray);
+}

@@ -1,9 +1,7 @@
-interface IObj {
-  [key: string]: string;
-}
+import { IStringObj } from "./interfaces";
 
 export const classNameConcatination = (
-  stylesObj: IObj,
+  stylesObj: IStringObj,
   classNames: Array<string>,
 ) => {
   let resultStr = "";

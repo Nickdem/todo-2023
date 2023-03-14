@@ -1,12 +1,8 @@
 import { createElement, ReactNode } from "react";
-import { IItem } from "../Header/Header";
+import { IItemForList, IListProps } from "../../utils/interfaces";
 
-interface IListProps {
-  itemsList: IItem;
-}
-
-const List = ({ itemsList }: IListProps) => {
-  function createChildren(childrens: IItem[]): ReactNode {
+const List = ({ items }: IListProps) => {
+  function createChildren(childrens: IItemForList[]): ReactNode {
     return childrens.map((children) => {
       return createElement(
         children.tag,
@@ -15,11 +11,8 @@ const List = ({ itemsList }: IListProps) => {
       );
     });
   }
-  return createElement(
-    itemsList.tag,
-    itemsList.attr,
-    createChildren(itemsList.childrens!),
-  );
+
+  return createElement(items.tag, items.attr, createChildren(items.childrens!));
 };
 
 export default List;

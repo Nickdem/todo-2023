@@ -1,14 +1,13 @@
+import { ILayoutProps } from "../../utils/interfaces";
 import Header from "../Header";
-
-interface ILayoutProps {
-  children: JSX.Element | JSX.Element[];
-}
 
 const Layout = ({ children }: ILayoutProps) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main>
+        <section className="container">{children}</section>
+      </main>
     </>
   );
 };
