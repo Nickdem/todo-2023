@@ -1,5 +1,63 @@
 import { classNameConcatination } from "../../utils/classNameConcatination";
+import List from "../List";
 import styles from "./Header.module.css";
+
+export interface IItem {
+  tag: string;
+  attr: {
+    className: string;
+    href?: string;
+    key: string;
+  };
+  text?: string;
+  childrens?: Array<IItem>;
+}
+
+const linksList: IItem = {
+  tag: "ul",
+  attr: {
+    className: styles["navigation-list"],
+    key: "nav-list",
+  },
+  childrens: [
+    {
+      tag: "li",
+      attr: {
+        className: styles["navigation-item"],
+        key: "nav-item1",
+      },
+      childrens: [
+        {
+          tag: "a",
+          attr: {
+            className: styles["navigation-link"],
+            href: "#1",
+            key: "nav-link1",
+          },
+          text: "Войти",
+        },
+      ],
+    },
+    {
+      tag: "li",
+      attr: {
+        className: styles["navigation-item"],
+        key: "nav-item2",
+      },
+      childrens: [
+        {
+          tag: "a",
+          attr: {
+            className: styles["navigation-link"],
+            href: "#2",
+            key: "nav-link2",
+          },
+          text: "Авторизоваться",
+        },
+      ],
+    },
+  ],
+};
 
 const Header = () => {
   return (
@@ -14,18 +72,7 @@ const Header = () => {
             "navigation",
           ])}
         >
-          <ul className={styles["navigation-list"]}>
-            <li className={styles["navigation-item"]}>
-              <a className={styles["navigation-link"]} href="#d">
-                Войти
-              </a>
-            </li>
-            <li className={styles["navigation-item"]}>
-              <a className={styles["navigation-link"]} href="#ds">
-                Авторизоваться
-              </a>
-            </li>
-          </ul>
+          <List itemsList={linksList}></List>
         </nav>
       </div>
     </header>
