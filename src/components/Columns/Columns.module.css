@@ -1,0 +1,6 @@
+.columns {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 40px;
+    align-items: flex-start;
+}

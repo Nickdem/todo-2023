@@ -1,0 +1,17 @@
+.todo {
+  padding: 6px;
+  border: 1px solid var(--main-gray);
+  box-shadow: 0 0 4px var(--main-black);
+  border-radius: 4px;
+  background-color: var(--main-grey);
+  transition: all 0.44s ease;
+}
+
+.todo:hover {
+  transform: scale(1.03);
+  background-color: var(--main-gray);
+}
+
+.todo-title {
+  margin: 0 0 15px;
+}

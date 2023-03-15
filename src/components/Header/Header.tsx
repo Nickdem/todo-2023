@@ -16,7 +16,7 @@ const Header = () => {
             "navigation",
           ])}
         >
-          <List items={getLinks(styles)}></List>
+          <List items={getLinks(styles)} />
         </nav>
       </div>
     </header>

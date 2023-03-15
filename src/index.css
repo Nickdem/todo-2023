@@ -25,7 +25,12 @@ a {
   transition: all 0.44s ease;
 }
 
-a:hover {
+button {
+  cursor: pointer;
+}
+
+a:hover,
+button:hover {
   color: var(--main-black);
   opacity: 0.8;
 }

@@ -14,6 +14,22 @@ export interface IItemForList {
   childrens?: Array<IItemForList>;
 }
 
+export interface ITodoObj {
+  title: string;
+  description: string;
+  tag: string;
+  id: number;
+}
+
+export interface ITodoObjWrapper {
+  title: string;
+  items: Array<ITodoObj>;
+}
+
+export interface IMockTodoObj {
+  [key: string]: ITodoObjWrapper;
+}
+
 export interface ILayoutProps {
   children: JSX.Element | JSX.Element[];
 }
@@ -37,4 +53,12 @@ export interface ISelectValueProps {
 
 export interface ITagProps {
   color: string;
+}
+
+export interface IColumnProps {
+  name: string;
+}
+
+export interface ITodoProps {
+  item: ITodoObj;
 }
