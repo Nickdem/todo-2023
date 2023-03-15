@@ -1,5 +1,6 @@
 import { getMockTodos } from "../../utils/consts";
 import { IColumnProps } from "../../utils/interfaces";
+import Button from "../Button";
 import Todo from "../Todo";
 import styles from "./Column.module.css";
 
@@ -15,9 +16,12 @@ const Column = ({ name }: IColumnProps) => {
         ))}
       </div>
       {name !== "done" && (
-        <button className={styles["column-button"]} data-testid="column-btn">
-          Добавить
-        </button>
+        <Button
+          clickHandler={() => alert(12)}
+          text="Добавить"
+          cls={styles["column-button"]}
+          testid="column-btn"
+        />
       )}
     </div>
   );

@@ -63,3 +63,10 @@ export interface IColumnProps {
 export interface ITodoProps {
   item: ITodoObj;
 }
+
+export interface IButtonProps {
+  text: string;
+  clickHandler: Function;
+  cls: string;
+  testid: string;
+}
