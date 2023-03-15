@@ -5,6 +5,7 @@
   border-radius: 4px;
   background-color: var(--main-grey);
   transition: all 0.44s ease;
+  cursor: pointer;
 }
 
 .todo:hover {

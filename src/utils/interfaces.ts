@@ -70,3 +70,9 @@ export interface IButtonProps {
   cls: string;
   testid: string;
 }
+
+export interface IModalProps {
+  children: JSX.Element | JSX.Element[];
+  isOpen: boolean;
+  onClose: Function;
+}
