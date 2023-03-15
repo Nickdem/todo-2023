@@ -3,7 +3,7 @@ import Select from "../Select";
 
 const Filter = () => {
   return (
-    <section className={styles.filter}>
+    <section className={styles.filter} data-testid="filter">
       <Select />
     </section>
   );

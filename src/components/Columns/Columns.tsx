@@ -4,7 +4,7 @@ import styles from "./Columns.module.css";
 
 const Columns = () => {
   return (
-    <section className={styles.columns}>
+    <section className={styles.columns} data-testid="columns">
       {Object.keys(getMockTodos).map((name) => (
         <Column key={name} name={name} />
       ))}

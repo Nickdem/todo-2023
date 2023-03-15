@@ -9,6 +9,7 @@ export interface IItemForList {
     href?: string;
     key: string;
     onClick?: Function;
+    "data-testid"?: string;
   };
   text?: string;
   childrens?: Array<IItemForList>;

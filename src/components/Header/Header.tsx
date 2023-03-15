@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles["header-inner"]}>
-        <a className={styles["header-logo"]} href="#123">
+        <a className={styles["header-logo"]} href="#123" data-testid="logo">
           TO DO
         </a>
         <nav
@@ -15,6 +15,7 @@ const Header = () => {
             "header-navigation",
             "navigation",
           ])}
+          data-testid="nav"
         >
           <List items={getLinks(styles)} />
         </nav>

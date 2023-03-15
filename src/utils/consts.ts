@@ -5,6 +5,7 @@ export const getLinks = (styles: IStringObj): IItemForList => ({
   attr: {
     className: styles["navigation-list"],
     key: "nav-list",
+    "data-testid": "nav-list",
   },
   childrens: [
     {
@@ -20,6 +21,7 @@ export const getLinks = (styles: IStringObj): IItemForList => ({
             className: styles["navigation-link"],
             href: "#1",
             key: "nav-link1",
+            "data-testid": "signin",
           },
           text: "Войти",
         },
@@ -38,8 +40,9 @@ export const getLinks = (styles: IStringObj): IItemForList => ({
             className: styles["navigation-link"],
             href: "#2",
             key: "nav-link2",
+            "data-testid": "signup",
           },
-          text: "Авторизоваться",
+          text: "Регистрация",
         },
       ],
     },

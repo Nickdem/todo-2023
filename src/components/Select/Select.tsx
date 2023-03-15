@@ -15,7 +15,7 @@ const Select = () => {
   }
 
   return (
-    <div className={styles.select}>
+    <div className={styles.select} data-testid="select">
       <SelectValue
         color={select}
         cls={styles["select-value"]}
