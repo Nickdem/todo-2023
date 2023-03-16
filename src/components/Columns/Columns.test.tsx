@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 
 import Columns from "./Columns";
 
-describe("Тестирование колонки", () => {
+describe("Тестирование колонок", () => {
   it("Отображение колонок", () => {
     render(<Columns />);
     const columns = screen.getByTestId("columns");

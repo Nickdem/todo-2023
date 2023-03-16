@@ -6,6 +6,7 @@ const Tag = ({ color }: ITagProps) => {
   return (
     <div
       className={classNameConcatination(styles, ["tag", `tag--${color}`])}
+      data-testid="tag"
     ></div>
   );
 };

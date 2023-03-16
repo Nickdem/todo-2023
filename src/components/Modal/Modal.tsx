@@ -16,7 +16,11 @@ const Modal = ({ children, isOpen, onClose }: IModalProps) => {
           clickHandler={onClose}
         />
       </div>
-      <div className={styles["modal-backdrop"]} onClick={() => onClose()}></div>
+      <div
+        className={styles["modal-backdrop"]}
+        onClick={() => onClose()}
+        data-testid="backdrop"
+      ></div>
     </>,
     document.body,
   );

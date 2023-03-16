@@ -12,14 +12,22 @@ const SelectValue = ({
 }: ISelectValueProps) => {
   if (!container) {
     return (
-      <li className={cls} onClick={() => clickHandler()}>
+      <li
+        className={cls}
+        onClick={() => clickHandler()}
+        data-testid="select-value"
+      >
         <Tag color={color} />
         <span className={styles.text}>{colors[color]}</span>
       </li>
     );
   }
   return (
-    <div className={cls} onClick={() => clickHandler()}>
+    <div
+      className={cls}
+      onClick={() => clickHandler()}
+      data-testid="select-value"
+    >
       <Tag color={color} />
       <span className={styles.text}>{colors[color]}</span>
     </div>

@@ -5,7 +5,7 @@ import SelectValue from "../SelectValue";
 
 const TagList = ({ itemsList, cls, clickHandler }: ITagListProps) => {
   return (
-    <ul className={styles.taglist}>
+    <ul className={styles.taglist} data-testid="tag-list">
       {itemsList.map((item) => {
         return (
           <SelectValue
