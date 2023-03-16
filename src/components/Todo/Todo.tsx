@@ -8,7 +8,11 @@ const Todo = ({ item }: ITodoProps) => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <div className={styles.todo} onClick={() => setOpen(true)}>
+      <div
+        className={styles.todo}
+        onClick={() => setOpen(true)}
+        data-testid="todo"
+      >
         <h3 className={styles["todo-title"]}>{item.title}</h3>
         <Tag color={item.tag} />
       </div>

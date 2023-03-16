@@ -7,7 +7,7 @@ const Modal = ({ children, isOpen, onClose }: IModalProps) => {
   if (!isOpen) return null;
   return createPortal(
     <>
-      <div className={styles.modal}>
+      <div className={styles.modal} data-testid="modal">
         {children}
         <Button
           text="x"
