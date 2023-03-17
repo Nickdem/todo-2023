@@ -14,8 +14,18 @@ const Select = () => {
     setShow(false);
   }
 
+  function leaveHandler() {
+    if (show) {
+      setShow(false);
+    }
+  }
+
   return (
-    <div className={styles.select} data-testid="select">
+    <div
+      className={styles.select}
+      data-testid="select"
+      onMouseLeave={leaveHandler}
+    >
       <SelectValue
         color={select}
         cls={styles["select-value"]}
@@ -27,6 +37,7 @@ const Select = () => {
           itemsList={Object.keys(colors)}
           cls={styles["select-value"]}
           clickHandler={changeSelect}
+          selected={select}
         />
       ) : null}
     </div>

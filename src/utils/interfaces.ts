@@ -43,6 +43,7 @@ export interface ITagListProps {
   itemsList: Array<string>;
   clickHandler: Function;
   cls: string;
+  selected?: string;
 }
 
 export interface ISelectValueProps {

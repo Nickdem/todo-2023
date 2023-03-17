@@ -27,6 +27,11 @@ a {
 
 button {
   cursor: pointer;
+  transition: all 0.44s ease;
+}
+
+button:active {
+  transform: scale(0.9);
 }
 
 a:hover,
