@@ -13,7 +13,9 @@ const Todo = ({ item }: ITodoProps) => {
         onClick={() => setOpen(true)}
         data-testid="todo"
       >
-        <h3 className={styles["todo-title"]}>{item.title}</h3>
+        <h3 className={styles["todo-title"]} data-testid="todo-title">
+          {item.title}
+        </h3>
         <Tag color={item.tag} />
       </div>
       <Modal isOpen={open} onClose={() => setOpen(false)}>

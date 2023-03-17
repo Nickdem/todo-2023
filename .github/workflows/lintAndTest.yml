@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} pushes changes to the ${{ github.ref_name }}
 on: push
 jobs:
   lint:
-    name: lint project
+    name: lint and test project
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

@@ -82,6 +82,6 @@ export const getMockTodos: IMockTodoObj = {
 export const colors: IStringObj = {
   all: "все",
   red: "красный",
-  green: "зеленый",
+  green: "зелёный",
   blue: "синий",
 };

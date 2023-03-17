@@ -18,7 +18,9 @@ const SelectValue = ({
         data-testid="select-value"
       >
         <Tag color={color} />
-        <span className={styles.text}>{colors[color]}</span>
+        <span className={styles.text} data-testid="select-text">
+          {colors[color]}
+        </span>
       </li>
     );
   }
@@ -29,7 +31,9 @@ const SelectValue = ({
       data-testid="select-value"
     >
       <Tag color={color} />
-      <span className={styles.text}>{colors[color]}</span>
+      <span className={styles.text} data-testid="select-text">
+        {colors[color]}
+      </span>
     </div>
   );
 };
