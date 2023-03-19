@@ -9,11 +9,11 @@ const Column = ({ name }: IColumnProps) => {
       <h1 className={styles["column-title"]} data-testid="column-title">
         {getMockTodos[name].title}
       </h1>
-      <div className={styles["column-list"]} data-testid="column-list">
+      <ul className={styles["column-list"]} data-testid="column-list">
         {getMockTodos[name].items.map((item) => (
           <Todo item={item} key={item.id} />
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

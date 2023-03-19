@@ -10,7 +10,7 @@ const Todo = ({ item }: ITodoProps) => {
     <>
       <div
         className={styles.todo}
-        onClick={() => navigate(`/popup/${item.id}`)}
+        onClick={() => navigate(`/edit/${item.id}`)}
         data-testid="todo"
       >
         <h3 className={styles["todo-title"]} data-testid="todo-title">
@@ -18,9 +18,6 @@ const Todo = ({ item }: ITodoProps) => {
         </h3>
         <Tag color={item.tag} />
       </div>
-      {/* <Modal isOpen={open} onClose={() => setOpen(false)}>
-        <div>Я МОДАЛКА РЕДАКТИРОВАНИЯ</div>
-      </Modal> */}
     </>
   );
 };

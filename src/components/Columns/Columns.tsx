@@ -13,9 +13,8 @@ const Columns = () => {
           <Column key={name} name={name} />
         ))}
       </section>
-
       <Button
-        clickHandler={() => navigate("/popup/new")}
+        clickHandler={() => navigate("/edit/new")}
         text="Добавить"
         cls={styles["columns-button"]}
         testid="column-btn"

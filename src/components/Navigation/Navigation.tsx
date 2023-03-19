@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { navigationList } from "../../utils/consts";
 import styles from "./Navigation.module.css";
 
-const NavList = () => {
+const Navigation = () => {
   return (
     <nav className={styles.navigation} data-testid="nav">
       <ul className={styles["navigation-list"]}>
@@ -22,4 +22,4 @@ const NavList = () => {
   );
 };
 
-export default NavList;
+export default Navigation;

@@ -25,7 +25,7 @@ const App = () => {
           }
         />
         <Route
-          path="popup/:id"
+          path="edit/:id"
           element={
             <Modal>
               <Form />
