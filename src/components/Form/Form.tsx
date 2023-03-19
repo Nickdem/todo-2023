@@ -1,9 +1,12 @@
 // import styles from "./Filter.module.css";
 
-import { ILayoutProps } from "../../utils/interfaces";
+import { useLocation } from "react-router-dom";
 
-const Form = ({ children }: ILayoutProps) => {
-  return <form>{children}</form>;
+const Form = () => {
+  const { pathname } = useLocation();
+  console.log(pathname);
+
+  return <form>form</form>;
 };
 
 export default Form;

@@ -1,13 +1,19 @@
-import { ILayoutProps } from "../../utils/interfaces";
+import { Outlet } from "react-router-dom";
+import Columns from "../Columns";
+import Filter from "../Filter";
 import Header from "../Header";
 
-const Layout = ({ children }: ILayoutProps) => {
+const Layout = () => {
   return (
     <>
       <Header />
       <main>
-        <section className="container">{children}</section>
+        <section className="container">
+          <Filter />
+          <Columns />
+        </section>
       </main>
+      <Outlet />
     </>
   );
 };

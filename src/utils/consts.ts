@@ -1,53 +1,15 @@
-import { IItemForList, IMockTodoObj, IStringObj } from "./interfaces";
+import { IMockTodoObj, IStringObj } from "./interfaces";
 
-export const getLinks = (styles: IStringObj): IItemForList => ({
-  tag: "ul",
-  attr: {
-    className: styles["navigation-list"],
-    key: "nav-list",
-    "data-testid": "nav-list",
+export const navigationList = [
+  {
+    text: "Войти",
+    href: "signin",
   },
-  childrens: [
-    {
-      tag: "li",
-      attr: {
-        className: styles["navigation-item"],
-        key: "nav-item1",
-      },
-      childrens: [
-        {
-          tag: "a",
-          attr: {
-            className: styles["navigation-link"],
-            href: "#1",
-            key: "nav-link1",
-            "data-testid": "signin",
-          },
-          text: "Войти",
-        },
-      ],
-    },
-    {
-      tag: "li",
-      attr: {
-        className: styles["navigation-item"],
-        key: "nav-item2",
-      },
-      childrens: [
-        {
-          tag: "a",
-          attr: {
-            className: styles["navigation-link"],
-            href: "#2",
-            key: "nav-link2",
-            "data-testid": "signup",
-          },
-          text: "Регистрация",
-        },
-      ],
-    },
-  ],
-});
+  {
+    text: "Регистрация",
+    href: "signup",
+  },
+];
 
 export const getMockTodos: IMockTodoObj = {
   todo: {

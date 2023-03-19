@@ -1,0 +1,16 @@
+.navigation {
+}
+
+.navigation-list {
+  display: flex;
+  column-gap: 10px;
+}
+
+.navigation-item {
+}
+
+.navigation-link {
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 400;
+}

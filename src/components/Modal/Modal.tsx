@@ -1,10 +1,12 @@
 import styles from "./Modal.module.css";
 import { createPortal } from "react-dom";
-import { IModalProps } from "../../utils/interfaces";
 import Button from "../Button";
+import { useNavigate } from "react-router-dom";
+import { IModalProps } from "../../utils/interfaces";
 
-const Modal = ({ children, isOpen, onClose }: IModalProps) => {
-  if (!isOpen) return null;
+const Modal = ({ children }: IModalProps) => {
+  const navigate = useNavigate();
+
   return createPortal(
     <>
       <div className={styles.modal} data-testid="modal">
@@ -13,12 +15,12 @@ const Modal = ({ children, isOpen, onClose }: IModalProps) => {
           text="x"
           testid="modal-close"
           cls={styles["modal-close"]}
-          clickHandler={onClose}
+          clickHandler={() => navigate("/")}
         />
       </div>
       <div
         className={styles["modal-backdrop"]}
-        onClick={() => onClose()}
+        onClick={() => navigate("/")}
         data-testid="backdrop"
       ></div>
     </>,

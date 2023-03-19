@@ -2,19 +2,6 @@ export interface IStringObj {
   [key: string]: string;
 }
 
-export interface IItemForList {
-  tag: string;
-  attr: {
-    className: string;
-    href?: string;
-    key: string;
-    onClick?: Function;
-    "data-testid"?: string;
-  };
-  text?: string;
-  childrens?: Array<IItemForList>;
-}
-
 export interface ITodoObj {
   title: string;
   description: string;
@@ -33,10 +20,6 @@ export interface IMockTodoObj {
 
 export interface ILayoutProps {
   children: JSX.Element | JSX.Element[];
-}
-
-export interface IListProps {
-  items: IItemForList;
 }
 
 export interface ITagListProps {
@@ -74,6 +57,4 @@ export interface IButtonProps {
 
 export interface IModalProps {
   children: JSX.Element | JSX.Element[];
-  isOpen: boolean;
-  onClose: Function;
 }

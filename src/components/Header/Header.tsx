@@ -1,24 +1,15 @@
-import { classNameConcatination } from "../../utils/classNameConcatination";
-import { getLinks } from "../../utils/consts";
-import List from "../List";
+import { Link } from "react-router-dom";
+import Navigation from "../Navigation";
 import styles from "./Header.module.css";
 
 const Header = () => {
   return (
     <header className={styles.header} data-testid="header">
       <div className={styles["header-inner"]}>
-        <a className={styles["header-logo"]} href="#123" data-testid="logo">
+        <Link className={styles["header-logo"]} to="/" data-testid="logo">
           TO DO
-        </a>
-        <nav
-          className={classNameConcatination(styles, [
-            "header-navigation",
-            "navigation",
-          ])}
-          data-testid="nav"
-        >
-          <List items={getLinks(styles)} />
-        </nav>
+        </Link>
+        <Navigation />
       </div>
     </header>
   );
