@@ -1,28 +1,39 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import App from "../../App";
 import Todo from "./Todo";
+
 const item = {
-  title: "дело1",
-  description: "описание дело1",
+  title: "дело",
+  description: "описание",
   tag: "red",
-  id: "1",
+  id: "todo-id",
 };
 
-describe("Отображение задачи", () => {
+describe("Тестирование задачи", () => {
   it("Задача отображается", () => {
-    render(<Todo item={item} />);
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Todo item={item} />
+      </MemoryRouter>,
+    );
     const todo = screen.getByTestId("todo");
     const title = screen.getByTestId("todo-title");
     const tag = screen.getByTestId("tag");
 
     expect(todo).toBeInTheDocument();
-    expect(title).toHaveTextContent("дело1");
+    expect(title).toHaveTextContent("дело");
     expect(tag).toHaveClass("tag tag--red");
   });
 
   it("Нажатие на задачу и появление модального окна", () => {
-    render(<Todo item={item} />);
-    const todo = screen.getByTestId("todo");
-    fireEvent.click(todo);
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <App />
+      </MemoryRouter>,
+    );
+    const todo = screen.getAllByTestId("todo");
+    fireEvent.click(todo[0]);
 
     const modal = screen.getByTestId("modal");
     expect(modal).toBeInTheDocument();

@@ -1,6 +1,6 @@
+import Todo from "../Todo";
 import { getMockTodos } from "../../utils/consts";
 import { IColumnProps } from "../../utils/interfaces";
-import Todo from "../Todo";
 import styles from "./Column.module.css";
 
 const Column = ({ name }: IColumnProps) => {

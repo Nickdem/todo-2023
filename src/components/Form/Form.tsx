@@ -1,10 +1,9 @@
-// import styles from "./Filter.module.css";
-
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { getMockTodos } from "../../utils/consts";
 import Button from "../Button";
 import Select from "../Select";
+import { getMockTodos } from "../../utils/consts";
+// import styles from "./Form.module.css";
 
 export const AuthForm = () => {
   const { pathname } = useLocation();

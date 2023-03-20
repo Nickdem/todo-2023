@@ -1,22 +1,29 @@
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import Column from "./Column";
 
 describe("Тестирование колонки", () => {
   it("Отображение первой колонки", () => {
-    render(<Column name="todo" />);
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Column name={"todo"} />
+      </MemoryRouter>,
+    );
     const column = screen.getByTestId("column");
     const title = screen.getByTestId("column-title");
     const todos = screen.getAllByTestId("todo");
-    const btn = screen.getByTestId("column-btn");
 
     expect(column).toBeInTheDocument();
     expect(title).toHaveTextContent("К выполнению");
     expect(todos).toHaveLength(6);
-    expect(btn).toHaveTextContent("Добавить");
   });
 
   it("Отображение последней колонки", () => {
-    render(<Column name="done" />);
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Column name="done" />
+      </MemoryRouter>,
+    );
     const column = screen.getByTestId("column");
     const title = screen.getByTestId("column-title");
     const todos = screen.getAllByTestId("todo");

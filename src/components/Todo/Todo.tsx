@@ -1,7 +1,7 @@
-import { ITodoProps } from "../../utils/interfaces";
-import Tag from "../Tag";
-import styles from "./Todo.module.css";
 import { useNavigate } from "react-router-dom";
+import Tag from "../Tag";
+import { ITodoProps } from "../../utils/interfaces";
+import styles from "./Todo.module.css";
 
 const Todo = ({ item }: ITodoProps) => {
   const navigate = useNavigate();

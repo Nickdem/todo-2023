@@ -1,8 +1,8 @@
-import { getMockTodos } from "../../utils/consts";
-import Column from "../Column/Column";
-import styles from "./Columns.module.css";
 import { useNavigate } from "react-router-dom";
+import Column from "../Column/Column";
 import Button from "../Button";
+import { getMockTodos } from "../../utils/consts";
+import styles from "./Columns.module.css";
 
 const Columns = () => {
   const navigate = useNavigate();

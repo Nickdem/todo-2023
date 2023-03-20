@@ -1,10 +1,14 @@
 import { render, screen } from "@testing-library/react";
-
+import { MemoryRouter } from "react-router-dom";
 import Columns from "./Columns";
 
 describe("Тестирование колонок", () => {
   it("Отображение колонок", () => {
-    render(<Columns />);
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Columns />
+      </MemoryRouter>,
+    );
     const columns = screen.getByTestId("columns");
     const columnsChilds = screen.getAllByTestId("column");
     const columnsTitles = screen.getAllByTestId("column-title");
@@ -16,6 +20,6 @@ describe("Тестирование колонок", () => {
     expect(columnsTitles[0]).toHaveTextContent("К выполнению");
     expect(columnsTitles[1]).toHaveTextContent("В работе");
     expect(columnsTitles[2]).toHaveTextContent("Готово");
-    expect(columnsBtns).toHaveLength(2);
+    expect(columnsBtns).toHaveLength(1);
   });
 });

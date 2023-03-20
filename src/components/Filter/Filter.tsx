@@ -1,5 +1,5 @@
-import styles from "./Filter.module.css";
 import Select from "../Select";
+import styles from "./Filter.module.css";
 
 const Filter = () => {
   return (

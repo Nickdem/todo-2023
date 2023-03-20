@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Error from "./components/Error";
+import { ErrorComponent } from "./components/Error/Error";
 import { AuthForm, TodoForm } from "./components/Form";
 import Layout from "./components/Layout";
 import Modal from "./components/Modal";
@@ -36,7 +36,7 @@ const App = () => {
           path="*"
           element={
             <Modal>
-              <Error />
+              <ErrorComponent />
             </Modal>
           }
         />

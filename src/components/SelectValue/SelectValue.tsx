@@ -1,8 +1,7 @@
-import styles from "./SelectValue.module.css";
-
-import { colors } from "../../utils/consts";
 import Tag from "../Tag";
+import { colors } from "../../utils/consts";
 import { ISelectValueProps } from "../../utils/interfaces";
+import styles from "./SelectValue.module.css";
 
 const SelectValue = ({
   color,

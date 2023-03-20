@@ -1,7 +1,6 @@
-import styles from "./TagList.module.css";
-
-import { ITagListProps } from "../../utils/interfaces";
 import SelectValue from "../SelectValue";
+import { ITagListProps } from "../../utils/interfaces";
+import styles from "./TagList.module.css";
 
 const TagList = ({ itemsList, cls, clickHandler, selected }: ITagListProps) => {
   return (
