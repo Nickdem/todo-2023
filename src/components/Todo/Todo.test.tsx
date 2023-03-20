@@ -4,7 +4,7 @@ const item = {
   title: "дело1",
   description: "описание дело1",
   tag: "red",
-  id: 1,
+  id: "1",
 };
 
 describe("Отображение задачи", () => {

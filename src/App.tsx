@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Error from "./components/Error";
-import Form from "./components/Form";
+import { AuthForm, TodoForm } from "./components/Form";
 import Layout from "./components/Layout";
 import Modal from "./components/Modal";
 
@@ -12,7 +12,7 @@ const App = () => {
           path="signin"
           element={
             <Modal>
-              <Form />
+              <AuthForm />
             </Modal>
           }
         />
@@ -20,7 +20,7 @@ const App = () => {
           path="signup"
           element={
             <Modal>
-              <Form />
+              <AuthForm />
             </Modal>
           }
         />
@@ -28,7 +28,7 @@ const App = () => {
           path="edit/:id"
           element={
             <Modal>
-              <Form />
+              <TodoForm />
             </Modal>
           }
         />

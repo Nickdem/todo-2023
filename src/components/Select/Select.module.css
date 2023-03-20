@@ -2,6 +2,7 @@
   width: 150px;
   position: relative;
   background-color: var(--main-grey);
+  border: 1px solid var(--main-gray);
 }
 
 .select-value {

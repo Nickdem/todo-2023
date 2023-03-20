@@ -6,7 +6,7 @@ export interface ITodoObj {
   title: string;
   description: string;
   tag: string;
-  id: number;
+  id: string;
 }
 
 export interface ITodoObjWrapper {

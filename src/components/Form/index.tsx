@@ -1,3 +1,3 @@
-import Form from "./Form";
+import { AuthForm, TodoForm } from "./Form";
 
-export default Form;
+export { AuthForm, TodoForm };
