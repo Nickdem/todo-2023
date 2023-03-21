@@ -15,7 +15,7 @@ describe("Тестирование модального окна", () => {
     const backdrop = screen.getByTestId("backdrop");
     expect(modal).toBeInTheDocument();
     expect(backdrop).toBeInTheDocument();
-    expect(modal).toHaveTextContent("Форма авторизацииВойтиx");
+    expect(modal).toHaveTextContent("Форма авторизацииВаше имя:Войтиx");
     const close = screen.getByTestId("modal-close");
     fireEvent.click(close);
     expect(modal).not.toBeInTheDocument();
