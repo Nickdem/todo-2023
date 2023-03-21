@@ -1,17 +1,42 @@
-import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { FormEvent, useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Button from "../Button";
 import Select from "../Select";
 import { getMockTodos } from "../../utils/consts";
 import styles from "./Form.module.css";
 import { classNameConcatination } from "../../utils/classNameConcatination";
+import { useAppDispatch } from "../../store";
+import { regUserName, setAuthName } from "../../store/auth/authSlice";
 
 export const AuthForm = () => {
   const { pathname } = useLocation();
   const [name, setName] = useState("");
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  function submitHandler(e: FormEvent) {
+    e.preventDefault();
+    if (name.trim() === "") {
+      console.log("вы ничего не ввели");
+      return;
+    }
+    if (!/^[A-Za-z-]+$/.test(name)) {
+      console.log("aaa");
+      return;
+    }
+
+    if (pathname === "/signin") {
+      dispatch(setAuthName(name));
+    }
+    if (pathname === "/signup") {
+      dispatch(regUserName(name));
+    }
+
+    navigate("/");
+  }
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={submitHandler}>
       <h2 className={styles["form-title"]}>Форма авторизации</h2>
       <label htmlFor="name" className={styles["form-label"]}>
         Ваше имя:
@@ -27,7 +52,7 @@ export const AuthForm = () => {
       <Button
         text={pathname === "/signin" ? "Войти" : "Регистрация"}
         cls={classNameConcatination(styles, ["form-btn", "form-btn--green"])}
-        clickHandler={() => alert(name)}
+        clickHandler={() => {}}
         testid={pathname}
       />
     </form>

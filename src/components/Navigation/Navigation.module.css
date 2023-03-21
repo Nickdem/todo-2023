@@ -14,3 +14,10 @@
   line-height: 30px;
   font-weight: 400;
 }
+
+.navigation-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: var(--main-grey);
+}

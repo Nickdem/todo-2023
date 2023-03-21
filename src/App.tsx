@@ -3,8 +3,12 @@ import { ErrorComponent } from "./components/Error/Error";
 import { AuthForm, TodoForm } from "./components/Form";
 import Layout from "./components/Layout";
 import Modal from "./components/Modal";
+import { useAppDispatch } from "./store";
+import { getAuthName } from "./store/auth/authSlice";
 
 const App = () => {
+  const dispatch = useAppDispatch();
+  dispatch(getAuthName());
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
