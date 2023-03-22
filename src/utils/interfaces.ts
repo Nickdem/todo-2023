@@ -9,13 +9,13 @@ export interface ITodoObj {
   id: string;
 }
 
-export interface ITodoObjWrapper {
-  title: string;
-  items: Array<ITodoObj>;
-}
+// export interface ITodoObjWrapper {
+//   title: string;
+//   items: Array<ITodoObj>;
+// }
 
 export interface IMockTodoObj {
-  [key: string]: ITodoObjWrapper;
+  [key: string]: Array<ITodoObj>;
 }
 
 export interface ILayoutProps {

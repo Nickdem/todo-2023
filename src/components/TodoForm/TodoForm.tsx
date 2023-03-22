@@ -22,11 +22,9 @@ const TodoForm = () => {
 
     let item;
     if (keys && keys.length > 1) {
-      item =
-        getMockTodos[keys[0]].items.find((todo) => todo.id === id) ||
-        baseValues;
+      item = getMockTodos[keys[0]].find((todo) => todo.id === id) || baseValues;
     } else {
-      const length = getMockTodos.todo.items.length;
+      const length = getMockTodos.todo.length;
       item = { ...baseValues, id: `todo-${length + 1}` };
     }
 
