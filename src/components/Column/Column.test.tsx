@@ -1,14 +1,10 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { screen } from "@testing-library/react";
+import { renderWithProviders } from "../../utils/forTests";
 import Column from "./Column";
 
 describe("Тестирование колонки", () => {
   it("Отображение первой колонки", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Column name={"todo"} />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<Column name="todo" />);
     const column = screen.getByTestId("column");
     const title = screen.getByTestId("column-title");
     const todos = screen.getAllByTestId("todo");
@@ -19,11 +15,7 @@ describe("Тестирование колонки", () => {
   });
 
   it("Отображение последней колонки", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Column name="done" />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<Column name="done" />);
     const column = screen.getByTestId("column");
     const title = screen.getByTestId("column-title");
     const todos = screen.getAllByTestId("todo");

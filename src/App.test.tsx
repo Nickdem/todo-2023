@@ -1,25 +1,17 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { screen } from "@testing-library/react";
 import App from "./App";
+import { renderWithProviders } from "./utils/forTests";
 
 describe("Отображение элементов приложения", () => {
   it("Отображение лого", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<App />);
     const el = screen.getByTestId("logo");
 
     expect(el).toHaveTextContent("TO DO");
   });
 
   it("Отображение навигации", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<App />);
     const nav = screen.getByTestId("nav");
     const list = screen.getByTestId("nav-list");
     const links = screen.getAllByTestId("nav-link");
@@ -30,11 +22,7 @@ describe("Отображение элементов приложения", () =>
   });
 
   it("Отображение фильтра", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<App />);
     const filterSection = screen.getByTestId("filter");
     const select = screen.getByTestId("select");
 
@@ -42,11 +30,7 @@ describe("Отображение элементов приложения", () =>
   });
 
   it("Отображение колонок", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<App />);
     const columns = screen.getByTestId("columns");
     const columnsChilds = screen.getAllByTestId("column");
     const columnsTitles = screen.getAllByTestId("column-title");
@@ -62,11 +46,7 @@ describe("Отображение элементов приложения", () =>
   });
 
   it("Отображение списков", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<App />);
     const lists = screen.getAllByTestId("column-list");
 
     expect(lists[0]).toBeInTheDocument();

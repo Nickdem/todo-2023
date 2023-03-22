@@ -7,16 +7,14 @@ const reducer = {
   auth: authReducer,
 };
 
-// const preloadedState = {
-//   auth: null,
-// };
-
 const store = configureStore({
   reducer,
   devTools: process.env.NODE_ENV !== "production",
 });
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
+export type AppStore = typeof store;
+
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;

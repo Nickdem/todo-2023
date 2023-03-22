@@ -1,6 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { fireEvent, screen } from "@testing-library/react";
 import App from "../../App";
+import { renderWithProviders } from "../../utils/forTests";
 import Todo from "./Todo";
 
 const item = {
@@ -12,11 +12,8 @@ const item = {
 
 describe("Тестирование задачи", () => {
   it("Задача отображается", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Todo item={item} />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<Todo item={item} />);
+
     const todo = screen.getByTestId("todo");
     const title = screen.getByTestId("todo-title");
     const tag = screen.getByTestId("tag");
@@ -27,11 +24,7 @@ describe("Тестирование задачи", () => {
   });
 
   it("Нажатие на задачу и появление модального окна", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<App />);
     const todo = screen.getAllByTestId("todo");
     fireEvent.click(todo[0]);
 

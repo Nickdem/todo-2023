@@ -1,14 +1,10 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { screen } from "@testing-library/react";
+import { renderWithProviders } from "../../utils/forTests";
 import Columns from "./Columns";
 
 describe("Тестирование колонок", () => {
   it("Отображение колонок", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Columns />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<Columns />);
     const columns = screen.getByTestId("columns");
     const columnsChilds = screen.getAllByTestId("column");
     const columnsTitles = screen.getAllByTestId("column-title");

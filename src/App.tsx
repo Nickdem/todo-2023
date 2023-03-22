@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
+import AuthForm from "./components/AuthForm";
 import { ErrorComponent } from "./components/Error/Error";
-import { AuthForm, TodoForm } from "./components/Form";
 import Layout from "./components/Layout";
 import Modal from "./components/Modal";
+import TodoForm from "./components/TodoForm";
 import { useAppDispatch } from "./store";
 import { getAuthName } from "./store/auth/authSlice";
 

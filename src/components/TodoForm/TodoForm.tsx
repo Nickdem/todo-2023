@@ -1,63 +1,10 @@
-import { FormEvent, useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Button from "../Button";
 import Select from "../Select";
 import { getMockTodos } from "../../utils/consts";
-import styles from "./Form.module.css";
+import styles from "./TodoForm.module.css";
 import { classNameConcatination } from "../../utils/classNameConcatination";
-import { useAppDispatch } from "../../store";
-import { regUserName, setAuthName } from "../../store/auth/authSlice";
-
-export const AuthForm = () => {
-  const { pathname } = useLocation();
-  const [name, setName] = useState("");
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  function submitHandler(e: FormEvent) {
-    e.preventDefault();
-    if (name.trim() === "") {
-      console.log("вы ничего не ввели");
-      return;
-    }
-    if (!/^[A-Za-z-]+$/.test(name)) {
-      console.log("aaa");
-      return;
-    }
-
-    if (pathname === "/signin") {
-      dispatch(setAuthName(name));
-    }
-    if (pathname === "/signup") {
-      dispatch(regUserName(name));
-    }
-
-    navigate("/");
-  }
-
-  return (
-    <form className={styles.form} onSubmit={submitHandler}>
-      <h2 className={styles["form-title"]}>Форма авторизации</h2>
-      <label htmlFor="name" className={styles["form-label"]}>
-        Ваше имя:
-      </label>
-      <input
-        className={styles["form-input"]}
-        type="text"
-        name="name"
-        id="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <Button
-        text={pathname === "/signin" ? "Войти" : "Регистрация"}
-        cls={classNameConcatination(styles, ["form-btn", "form-btn--green"])}
-        clickHandler={() => {}}
-        testid={pathname}
-      />
-    </form>
-  );
-};
 
 const baseValues = {
   title: "",
@@ -66,7 +13,7 @@ const baseValues = {
   tag: "",
 };
 
-export const TodoForm = () => {
+const TodoForm = () => {
   const { id } = useParams();
   const [values, setValues] = useState(baseValues);
 
@@ -87,11 +34,15 @@ export const TodoForm = () => {
   }, [id]);
 
   return (
-    <form className={styles.form}>
-      <h2 className={styles["form-title"]}>
+    <form className={styles.form} data-testid="todoform">
+      <h2 className={styles["form-title"]} data-testid="todoform-title">
         Форма {id !== "new" ? "редактирования" : "создания"} задачи
       </h2>
-      <label htmlFor="title" className={styles["form-label"]}>
+      <label
+        htmlFor="title"
+        className={styles["form-label"]}
+        data-testid="todoform-label"
+      >
         Название:
       </label>
       <input
@@ -105,9 +56,14 @@ export const TodoForm = () => {
 
           setValues({ title: "", description: "", id: "0", tag: "" });
         }}
+        data-testid="todoform-input"
       />
-      <label htmlFor="description" className={styles["form-label"]}>
-        Название:
+      <label
+        htmlFor="description"
+        className={styles["form-label"]}
+        data-testid="todoform-label"
+      >
+        Описание:
       </label>
       <textarea
         className={styles["form-input"]}
@@ -121,6 +77,7 @@ export const TodoForm = () => {
 
           setValues({ title: "", description: "", id: "0", tag: "" });
         }}
+        data-testid="todoform-textarea"
       ></textarea>
       <Select />
       <div className={styles["form-btns"]}>
@@ -142,3 +99,5 @@ export const TodoForm = () => {
     </form>
   );
 };
+
+export default TodoForm;

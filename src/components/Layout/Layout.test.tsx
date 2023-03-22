@@ -1,14 +1,9 @@
-import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import App from "../../App";
+import { renderWithProviders } from "../../utils/forTests";
 
 describe("Тестирование Лайоута", () => {
   it("временный", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<App />);
 
     expect(document.body).toBeInTheDocument(); //временно
   });

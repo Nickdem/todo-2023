@@ -1,25 +1,17 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { screen } from "@testing-library/react";
+import { renderWithProviders } from "../../utils/forTests";
 import Header from "./Header";
 
 describe("Тестирование хедера", () => {
   it("Отображение хедера", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Header />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<Header />);
     const header = screen.getByTestId("header");
 
     expect(header).toBeInTheDocument();
   });
 
   it("Отображение навигации", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Header />
-      </MemoryRouter>,
-    );
+    renderWithProviders(<Header />);
     const nav = screen.getByTestId("nav");
     const list = screen.getByTestId("nav-list");
     const links = screen.getAllByTestId("nav-link");
