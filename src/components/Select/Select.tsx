@@ -3,10 +3,13 @@ import TagList from "../TagList/TagList";
 import SelectValue from "../SelectValue";
 import { colors } from "../../utils/consts";
 import styles from "./Select.module.css";
+import { useAppSelector } from "../../store";
+import { classNameConcatination } from "../../utils/classNameConcatination";
 
 const Select = () => {
   const [select, setSelect] = useState("all");
   const [show, setShow] = useState(false);
+  const name = useAppSelector((state) => state.auth.name);
 
   function changeSelect(value: string) {
     setSelect(value);
@@ -21,7 +24,11 @@ const Select = () => {
 
   return (
     <div
-      className={styles.select}
+      className={
+        name
+          ? styles.select
+          : classNameConcatination(styles, ["select", "disabled"])
+      }
       data-testid="select"
       onMouseLeave={leaveHandler}
     >

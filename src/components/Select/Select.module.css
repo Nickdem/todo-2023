@@ -18,3 +18,7 @@
 .select-value:hover {
   background-color: var(--main-gray);
 }
+
+.disabled {
+  pointer-events: none;
+}
