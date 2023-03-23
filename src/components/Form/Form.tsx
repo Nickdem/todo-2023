@@ -1,8 +1,8 @@
 import { FormEvent } from "react";
 import Button from "../Button";
-import styles from "./Form.module.css";
 import { IFormProps } from "../../utils/interfaces";
 import { classNameConcatination } from "../../utils/classNameConcatination";
+import styles from "./Form.module.css";
 
 const Form = ({ children, title, text, clickHandler }: IFormProps) => {
   function submitHandler(e: FormEvent) {

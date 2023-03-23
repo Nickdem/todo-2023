@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAppDispatch } from "../../store";
-import { regUserName, setAuthName } from "../../store/auth/authSlice";
 import Form from "../Form";
 import FormField from "../FormField";
+import { useAppDispatch } from "../../store";
+import { regUserName, setAuthName } from "../../store/auth/authSlice";
 
 const AuthForm = () => {
   const { id } = useParams();

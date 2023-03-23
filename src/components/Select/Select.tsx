@@ -2,9 +2,9 @@ import { useState } from "react";
 import TagList from "../TagList/TagList";
 import SelectValue from "../SelectValue";
 import { colors } from "../../utils/consts";
-import styles from "./Select.module.css";
 import { useAppSelector } from "../../store";
 import { classNameConcatination } from "../../utils/classNameConcatination";
+import styles from "./Select.module.css";
 
 const Select = () => {
   const [select, setSelect] = useState("all");

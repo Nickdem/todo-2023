@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { navigationList } from "../../utils/consts";
-import styles from "./Navigation.module.css";
-import { useAppDispatch, useAppSelector } from "../../store";
 import Button from "../Button";
+import { navigationList } from "../../utils/consts";
+import { useAppDispatch, useAppSelector } from "../../store";
 import { logoutUserName } from "../../store/auth/authSlice";
+import styles from "./Navigation.module.css";
 
 const Navigation = () => {
   const name = useAppSelector((state) => state.auth.name);

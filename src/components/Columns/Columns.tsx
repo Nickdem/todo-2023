@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Column from "../Column/Column";
 import Button from "../Button";
+import { useAppSelector } from "../../store";
 import { getMockTodos } from "../../utils/consts";
 import styles from "./Columns.module.css";
-import { useAppSelector } from "../../store";
 
 const Columns = () => {
   const navigate = useNavigate();
