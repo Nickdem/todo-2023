@@ -18,6 +18,14 @@ export interface IMockTodoObj {
   [key: string]: Array<ITodoObj>;
 }
 
+export interface ITodosObj {
+  [key: string]: Array<ITodoObj>;
+  // todo: Array<ITodoObj>;
+  // inprogress: Array<ITodoObj>;
+  // done: Array<ITodoObj>;
+  // todosLength: number;
+}
+
 export interface ILayoutProps {
   children: JSX.Element | JSX.Element[];
 }
@@ -40,6 +48,8 @@ export interface ITagProps {
   color: string;
 }
 
+// export type columnNames = "todo" | "inprogress" | "done";
+// export type IColumnNames = Record<columnNames, string>;
 export interface IColumnProps {
   name: string;
 }

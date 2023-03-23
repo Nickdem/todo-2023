@@ -1,3 +1,5 @@
+import { ITodoObj } from "./interfaces";
+
 const delayTime = 1500;
 
 function getRandomInt(max: number) {
@@ -60,9 +62,19 @@ export async function regUserLC(name: string) {
     await delay(() => requestToTheServer("post", "user", name));
     const res = requestToTheServer("get", "todos");
     const todos = typeof res === "string" ? JSON.parse(res) : {};
-    todos[name] = { todo: [], inprogress: [], done: [], todosLength: 0 };
+    todos[name] = { todo: [], inprogress: [], done: [], todosLength: 50 };
     console.log(todos);
 
     requestToTheServer("post", "todos", todos);
   }
+}
+
+export async function getTodosLC(name: string) {
+  const res = await delay(() => requestToTheServer("get", "todos"));
+  const json = (await typeof res) === "string" ? JSON.parse(res) : {};
+  return json[name];
+}
+
+export function createTodoLC(item: ITodoObj) {
+  console.log(item);
 }

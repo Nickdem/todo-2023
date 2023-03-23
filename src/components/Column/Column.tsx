@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react";
 import Todo from "../Todo";
 import { columnTitles } from "../../utils/consts";
-import { IColumnProps } from "../../utils/interfaces";
+import { IColumnProps, ITodoObj } from "../../utils/interfaces";
 import styles from "./Column.module.css";
+import { useAppSelector } from "../../store";
 
 const Column = ({ name }: IColumnProps) => {
-  const [todos, setTodos] = useState([
-    { id: "", title: "", description: "", tag: "" },
-  ]);
-
-  useEffect(() => {
-    // setTodos(getMockTodos[name]);
-    setTodos([]);
-  }, [name]);
+  const todos = useAppSelector((state) => state.todos.list[name]);
 
   return (
     <div className={styles.column} data-testid="column">
@@ -21,7 +14,7 @@ const Column = ({ name }: IColumnProps) => {
       </h1>
       <ul className={styles["column-list"]} data-testid="column-list">
         {todos.length ? (
-          todos.map((item) => <Todo item={item} key={item.id} />)
+          todos.map((item: ITodoObj) => <Todo item={item} key={item.id} />)
         ) : (
           <p>Пусто</p>
         )}

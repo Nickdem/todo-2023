@@ -1,18 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import Column from "../Column/Column";
 import Button from "../Button";
-import { useAppSelector } from "../../store";
-import { getMockTodos } from "../../utils/consts";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { columnTitles } from "../../utils/consts";
 import styles from "./Columns.module.css";
+import { useEffect } from "react";
+import { getTodoList } from "../../store/todos/todosSlice";
 
 const Columns = () => {
   const navigate = useNavigate();
   const name = useAppSelector((state) => state.auth.name);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (name) {
+      dispatch(getTodoList(name));
+    }
+  }, [name, dispatch]);
 
   return (
     <>
       <section className={styles.columns} data-testid="columns">
-        {Object.keys(getMockTodos).map((title) => (
+        {Object.keys(columnTitles).map((title) => (
           <Column key={title} name={title} />
         ))}
       </section>

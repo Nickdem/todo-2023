@@ -16,7 +16,18 @@ describe("Тестирование навигации", () => {
 
   it("Отображение выхода из аккаунта", () => {
     renderWithProviders(<Navigation />, {
-      preloadedState: { auth: { name: "aaa" } },
+      preloadedState: {
+        auth: { name: "aaa" },
+        todos: {
+          list: { todo: [], inprogress: [], done: [] },
+          form: {
+            title: "",
+            description: "",
+            id: "",
+            tag: "",
+          },
+        },
+      },
     });
     const list = screen.getByTestId("nav-list");
     const items = screen.getAllByTestId("exit-btn");
