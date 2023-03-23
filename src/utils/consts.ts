@@ -3,11 +3,11 @@ import { IMockTodoObj, IStringObj } from "./interfaces";
 export const navigationList = [
   {
     text: "Войти",
-    href: "signin",
+    href: "in",
   },
   {
     text: "Регистрация",
-    href: "signup",
+    href: "up",
   },
 ];
 

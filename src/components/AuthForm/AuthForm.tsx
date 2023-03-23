@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../Button";
 import styles from "./AuthForm.module.css";
 import { classNameConcatination } from "../../utils/classNameConcatination";
@@ -7,7 +7,7 @@ import { useAppDispatch } from "../../store";
 import { regUserName, setAuthName } from "../../store/auth/authSlice";
 
 const AuthForm = () => {
-  const { pathname } = useLocation();
+  const { id } = useParams();
   const [name, setName] = useState("");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -23,10 +23,10 @@ const AuthForm = () => {
       return;
     }
 
-    if (pathname === "/signin") {
+    if (id === "in") {
       dispatch(setAuthName(name));
     }
-    if (pathname === "/signup") {
+    if (id === "up") {
       dispatch(regUserName(name));
     }
 
@@ -59,7 +59,7 @@ const AuthForm = () => {
         data-testid="authform-input"
       />
       <Button
-        text={pathname === "/signin" ? "Войти" : "Регистрация"}
+        text={id === "in" ? "Войти" : "Регистрация"}
         cls={classNameConcatination(styles, ["form-btn", "form-btn--green"])}
         clickHandler={() => {}}
         testid="authform-btn"

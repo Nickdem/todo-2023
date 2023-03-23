@@ -14,15 +14,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route
-          path="signin"
-          element={
-            <Modal>
-              <AuthForm />
-            </Modal>
-          }
-        />
-        <Route
-          path="signup"
+          path="sign/:id"
           element={
             <Modal>
               <AuthForm />

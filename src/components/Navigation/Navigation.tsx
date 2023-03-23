@@ -28,7 +28,7 @@ const Navigation = () => {
             <li className={styles["navigation-item"]} key={item.href}>
               <Link
                 className={styles["navigation-link"]}
-                to={item.href}
+                to={`sign/${item.href}`}
                 data-testid="nav-link"
               >
                 {item.text}

@@ -30,7 +30,7 @@ describe("Отображение элементов приложения", () =>
   });
 
   it("Отображение колонок", () => {
-    renderWithProviders(<App />);
+    renderWithProviders(<App />, { preloadedState: { auth: { name: "aaa" } } });
     const columns = screen.getByTestId("columns");
     const columnsChilds = screen.getAllByTestId("column");
     const columnsTitles = screen.getAllByTestId("column-title");
