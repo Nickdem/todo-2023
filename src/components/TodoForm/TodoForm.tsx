@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Button from "../Button";
 import Select from "../Select";
 import { getMockTodos } from "../../utils/consts";
-import styles from "./TodoForm.module.css";
-import { classNameConcatination } from "../../utils/classNameConcatination";
+import Form from "../Form";
+import FormField from "../FormField";
 
 const baseValues = {
   title: "",
@@ -31,70 +30,34 @@ const TodoForm = () => {
     setValues(item);
   }, [id]);
 
+  function changeHandler(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
   return (
-    <form className={styles.form} data-testid="todoform">
-      <h2 className={styles["form-title"]} data-testid="todoform-title">
-        Форма {id !== "new" ? "редактирования" : "создания"} задачи
-      </h2>
-      <label
-        htmlFor="title"
-        className={styles["form-label"]}
-        data-testid="todoform-label"
-      >
-        Название:
-      </label>
-      <input
-        className={styles["form-input"]}
-        type="text"
+    <Form
+      text={id !== "new" ? "Сохранить" : "Создать"}
+      title={`Форма ${id !== "new" ? "редактирования" : "создания"} задачи`}
+      clickHandler={() => {}}
+    >
+      <FormField
+        label="Название"
         value={values.title}
         name="title"
-        id="title"
-        onChange={(e) => {
-          console.log(e);
-
-          setValues({ title: "", description: "", id: "0", tag: "" });
-        }}
-        data-testid="todoform-input"
+        changeHandler={changeHandler}
+        type="input"
       />
-      <label
-        htmlFor="description"
-        className={styles["form-label"]}
-        data-testid="todoform-label"
-      >
-        Описание:
-      </label>
-      <textarea
-        className={styles["form-input"]}
-        name="description"
-        id="description"
+      <FormField
+        label="Описание"
         value={values.description}
-        cols={30}
-        rows={10}
-        onChange={(e) => {
-          console.log(e);
-
-          setValues({ title: "", description: "", id: "0", tag: "" });
-        }}
-        data-testid="todoform-textarea"
-      ></textarea>
+        name="description"
+        changeHandler={changeHandler}
+        type="textarea"
+      />
       <Select />
-      <div className={styles["form-btns"]}>
-        <Button
-          text={id !== "new" ? "Сохранить" : "Создать"}
-          cls={classNameConcatination(styles, ["form-btn", "form-btn--green"])}
-          clickHandler={() => alert("save" + id)}
-          testid={"save-btn"}
-        />
-        {id !== "new" && (
-          <Button
-            text={"Удалить"}
-            cls={classNameConcatination(styles, ["form-btn", "form-btn--red"])}
-            clickHandler={() => alert("delete" + id)}
-            testid={"del-btn"}
-          />
-        )}
-      </div>
-    </form>
+    </Form>
   );
 };
 

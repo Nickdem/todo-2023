@@ -60,7 +60,7 @@ export async function regUserLC(name: string) {
     await delay(() => requestToTheServer("post", "user", name));
     const res = requestToTheServer("get", "todos");
     const todos = typeof res === "string" ? JSON.parse(res) : {};
-    todos[name] = { todo: [], inprogress: [], done: [] };
+    todos[name] = { todo: [], inprogress: [], done: [], todosLength: 0 };
     console.log(todos);
 
     requestToTheServer("post", "todos", todos);

@@ -58,3 +58,18 @@ export interface IButtonProps {
 export interface IModalProps {
   children: JSX.Element | JSX.Element[];
 }
+
+export interface IFormProps {
+  children: JSX.Element | JSX.Element[];
+  text: string;
+  title: string;
+  clickHandler: Function;
+}
+
+export interface IFormFieldProps {
+  name: string;
+  label: string;
+  value: string;
+  changeHandler: Function;
+  type: string;
+}

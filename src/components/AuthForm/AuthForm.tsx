@@ -1,10 +1,9 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Button from "../Button";
-import styles from "./AuthForm.module.css";
-import { classNameConcatination } from "../../utils/classNameConcatination";
 import { useAppDispatch } from "../../store";
 import { regUserName, setAuthName } from "../../store/auth/authSlice";
+import Form from "../Form";
+import FormField from "../FormField";
 
 const AuthForm = () => {
   const { id } = useParams();
@@ -12,8 +11,7 @@ const AuthForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  function submitHandler(e: FormEvent) {
-    e.preventDefault();
+  function submitHandler() {
     if (name.trim() === "") {
       console.log("вы ничего не ввели");
       return;
@@ -33,38 +31,26 @@ const AuthForm = () => {
     navigate("/");
   }
 
+  function changeHandler(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    setName(e.target.value);
+  }
+
   return (
-    <form
-      className={styles.form}
-      onSubmit={submitHandler}
-      data-testid="authform"
+    <Form
+      title="Форма авторизации"
+      text={id === "in" ? "Войти" : "Регистрация"}
+      clickHandler={submitHandler}
     >
-      <h2 className={styles["form-title"]} data-testid="authform-title">
-        Форма авторизации
-      </h2>
-      <label
-        htmlFor="name"
-        className={styles["form-label"]}
-        data-testid="authform-label"
-      >
-        Ваше имя:
-      </label>
-      <input
-        className={styles["form-input"]}
-        type="text"
-        name="name"
-        id="name"
+      <FormField
+        label="Ваше имя"
         value={name}
-        onChange={(e) => setName(e.target.value)}
-        data-testid="authform-input"
+        name="name"
+        changeHandler={changeHandler}
+        type="input"
       />
-      <Button
-        text={id === "in" ? "Войти" : "Регистрация"}
-        cls={classNameConcatination(styles, ["form-btn", "form-btn--green"])}
-        clickHandler={() => {}}
-        testid="authform-btn"
-      />
-    </form>
+    </Form>
   );
 };
 
