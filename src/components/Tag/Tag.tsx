@@ -1,5 +1,5 @@
 import { ITagProps } from "../../utils/interfaces";
-import { classNameConcatination } from "../../utils/classNameConcatination";
+import { classNameConcatination } from "../../utils/helpers";
 import styles from "./Tag.module.css";
 
 const Tag = ({ color }: ITagProps) => {

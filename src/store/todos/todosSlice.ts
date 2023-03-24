@@ -44,11 +44,13 @@ export const changeTodoItem = createAsyncThunk(
 interface ITodosState {
   list: ITodosObj;
   form: ITodoObj;
+  filter: string;
 }
 
 const initialState: ITodosState = {
   list: todosValues,
   form: formValues,
+  filter: "all",
 };
 
 export const todosSlice = createSlice({
@@ -63,6 +65,9 @@ export const todosSlice = createSlice({
     },
     setFormValues: (state, action: PayloadAction<ITodoObj>) => {
       state.form = action.payload;
+    },
+    setFilter: (state, action: PayloadAction<string>) => {
+      state.filter = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -81,5 +86,6 @@ export const todosSlice = createSlice({
   },
 });
 
-export const { setAllTodos, setForm, setFormValues } = todosSlice.actions;
+export const { setAllTodos, setForm, setFormValues, setFilter } =
+  todosSlice.actions;
 export default todosSlice.reducer;

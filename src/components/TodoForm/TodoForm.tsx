@@ -19,20 +19,6 @@ const TodoForm = () => {
   const values = useAppSelector((state) => state.todos.form);
   const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   const keys = id && id?.split("-");
-
-  //   let item;
-  //   if (keys && keys.length > 1) {
-  //     item = getMockTodos[keys[0]].find((todo) => todo.id === id) || baseValues;
-  //   } else {
-  //     const length = getMockTodos.todo.length;
-  //     item = { ...baseValues, id: `todo-${length + 1}` };
-  //   }
-
-  //   setValues(item);
-  // }, [id]);
-
   useEffect(() => {
     if (id && id !== "new") {
       dispatch(getTodoItemById(id));
@@ -40,12 +26,6 @@ const TodoForm = () => {
       dispatch(setForm({ id: Date.now().toString() }));
     }
   }, [id, dispatch]);
-  // function changeHandler(
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  // ) {
-  //   dispatch(setForm({ [e.target.name]: e.target.value }));
-  //   // dispatch(setForm({ name: e.target.name, value: e.target.value }));
-  // }
 
   const changeHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

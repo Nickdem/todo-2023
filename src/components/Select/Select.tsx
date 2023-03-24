@@ -3,7 +3,7 @@ import TagList from "../TagList/TagList";
 import SelectValue from "../SelectValue";
 import { colors } from "../../utils/consts";
 import { useAppSelector } from "../../store";
-import { classNameConcatination } from "../../utils/classNameConcatination";
+import { classNameConcatination } from "../../utils/helpers";
 import styles from "./Select.module.css";
 import { ISelectProps } from "../../utils/interfaces";
 

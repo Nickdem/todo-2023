@@ -1,4 +1,4 @@
-import { IStringObj } from "./interfaces";
+import { IStringObj, ITodoObj } from "./interfaces";
 
 export const classNameConcatination = (
   stylesObj: IStringObj,
@@ -11,4 +11,11 @@ export const classNameConcatination = (
   }
 
   return resultStr.trimEnd();
+};
+
+export const filterTodos = (todos: Array<ITodoObj>, filter: string) => {
+  if (filter === "all") {
+    return todos;
+  }
+  return todos.filter((todo) => todo.tag === filter);
 };
