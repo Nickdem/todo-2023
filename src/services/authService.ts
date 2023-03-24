@@ -5,10 +5,6 @@ import {
   logoutUserLC,
 } from "../utils/toLocalStorage";
 
-// export function createUser() {
-//   console.log(123);
-// }
-
 export function getUser() {
   return getUserLC();
 }

@@ -9,7 +9,7 @@ import { getTodoList } from "../../store/todos/todosSlice";
 
 const Columns = () => {
   const navigate = useNavigate();
-  const name = useAppSelector((state) => state.auth.name);
+  const name = useAppSelector((state) => state.auth.currName);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

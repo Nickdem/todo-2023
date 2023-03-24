@@ -7,7 +7,7 @@ import styles from "./Navigation.module.css";
 import { setAllTodos } from "../../store/todos/todosSlice";
 
 const Navigation = () => {
-  const name = useAppSelector((state) => state.auth.name);
+  const name = useAppSelector((state) => state.auth.currName);
   const dispatch = useAppDispatch();
 
   return (

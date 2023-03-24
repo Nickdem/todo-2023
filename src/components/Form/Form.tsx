@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { FormEvent, useCallback } from "react";
 import Button from "../Button";
 import { IFormProps } from "../../utils/interfaces";
 import { classNameConcatination } from "../../utils/helpers";
@@ -8,11 +8,14 @@ import { useNavigate } from "react-router-dom";
 const Form = ({ children, title, text, clickHandler }: IFormProps) => {
   const navigate = useNavigate();
 
-  function submitHandler(e: FormEvent) {
-    e.preventDefault();
-    clickHandler();
-    navigate("/");
-  }
+  const submitHandler = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault();
+      clickHandler();
+      navigate("/");
+    },
+    [clickHandler, navigate],
+  );
 
   return (
     <form className={styles.form} onSubmit={submitHandler} data-testid="form">

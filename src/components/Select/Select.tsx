@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import TagList from "../TagList/TagList";
 import SelectValue from "../SelectValue";
 import { colors } from "../../utils/consts";
@@ -8,20 +8,22 @@ import styles from "./Select.module.css";
 import { ISelectProps } from "../../utils/interfaces";
 
 const Select = ({ value, changeSelect, onlyColors }: ISelectProps) => {
-  // const [select, setSelect] = useState("all");
   const [show, setShow] = useState(false);
-  const name = useAppSelector((state) => state.auth.name);
+  const name = useAppSelector((state) => state.auth.currName);
 
-  function changeHandler(selectValue: string) {
-    changeSelect(selectValue);
-    setShow(false);
-  }
+  const changeHandler = useCallback(
+    (selectValue: string) => {
+      changeSelect(selectValue);
+      setShow(false);
+    },
+    [changeSelect],
+  );
 
-  function leaveHandler() {
+  const leaveHandler = useCallback(() => {
     if (show) {
       setShow(false);
     }
-  }
+  }, [show]);
 
   return (
     <div

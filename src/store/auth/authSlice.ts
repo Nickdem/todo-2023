@@ -6,6 +6,7 @@ import {
   setUser,
   logoutUser,
 } from "../../services/authService";
+import { IStringObj } from "../../utils/interfaces";
 
 export const getAuthName = createAsyncThunk("auth/getName", async () => {
   const res = await getUser();
@@ -41,11 +42,13 @@ export const logoutUserName = createAsyncThunk("auth/logoutName", async () => {
 });
 
 interface IAuthState {
-  name: string;
+  currName: string;
+  form: IStringObj;
 }
 
 const initialState: IAuthState = {
-  name: "",
+  currName: "",
+  form: { value: "" },
 };
 
 export const authSlice = createSlice({
@@ -53,33 +56,40 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action: PayloadAction<string>) => {
-      state.name = action.payload;
+      state.currName = action.payload;
     },
     logout: (state) => {
-      state.name = "";
+      state.currName = "";
+    },
+    setForm: (state, action: PayloadAction<string>) => {
+      state.form.name = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(getAuthName.fulfilled, (state, action) => {
-      state.name = action.payload;
+      state.currName = action.payload;
     });
     builder.addCase(setAuthName.fulfilled, (state, action) => {
-      state.name = action.payload;
+      state.currName = action.payload;
+      state.form.name = "";
     });
     builder.addCase(setAuthName.rejected, (state) => {
-      state.name = "";
+      state.currName = "";
+      state.form.name = "";
     });
     builder.addCase(regUserName.fulfilled, (state, action) => {
-      state.name = action.payload;
+      state.currName = action.payload;
+      state.form.name = "";
     });
     builder.addCase(regUserName.rejected, (state) => {
-      state.name = "";
+      state.currName = "";
+      state.form.name = "";
     });
     builder.addCase(logoutUserName.fulfilled, (state) => {
-      state.name = "";
+      state.currName = "";
     });
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, setForm } = authSlice.actions;
 export default authSlice.reducer;

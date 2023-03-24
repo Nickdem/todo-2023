@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Select from "../Select";
 import Form from "../Form";
@@ -9,10 +8,9 @@ import {
   createTodoItem,
   getTodoItemById,
   setForm,
-  setFormValues,
 } from "../../store/todos/todosSlice";
 import { useCallback, useEffect } from "react";
-import { formValues } from "../../utils/consts";
+// import { formValues } from "../../utils/consts";
 
 const TodoForm = () => {
   const { id } = useParams();
@@ -48,7 +46,6 @@ const TodoForm = () => {
       dispatch(changeTodoItem(values));
     }
 
-    dispatch(setFormValues(formValues));
     dispatch(setForm({ id: Date.now().toString() }));
   }, [dispatch, values, id]);
 

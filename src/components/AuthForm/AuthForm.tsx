@@ -1,41 +1,42 @@
-import { useState } from "react";
+import { useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Form from "../Form";
 import FormField from "../FormField";
-import { useAppDispatch } from "../../store";
-import { regUserName, setAuthName } from "../../store/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { regUserName, setAuthName, setForm } from "../../store/auth/authSlice";
 
 const AuthForm = () => {
   const { id } = useParams();
-  const [name, setName] = useState("");
+  const value = useAppSelector((state) => state.auth.form.name);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  function submitHandler() {
-    if (name.trim() === "") {
+  const submitHandler = useCallback(() => {
+    if (value.trim() === "") {
       console.log("вы ничего не ввели");
       return;
     }
-    if (!/^[A-Za-z-]+$/.test(name)) {
-      console.log("aaa");
+    if (!/^[A-Za-z-]+$/.test(value)) {
+      console.log("Не используйте цифры и пробелы");
       return;
     }
 
     if (id === "in") {
-      dispatch(setAuthName(name));
+      dispatch(setAuthName(value));
     }
     if (id === "up") {
-      dispatch(regUserName(name));
+      dispatch(regUserName(value));
     }
 
     navigate("/");
-  }
+  }, [dispatch, id, value, navigate]);
 
-  function changeHandler(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) {
-    setName(e.target.value);
-  }
+  const changeHandler = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      dispatch(setForm(e.target.value));
+    },
+    [dispatch],
+  );
 
   return (
     <Form
@@ -45,7 +46,7 @@ const AuthForm = () => {
     >
       <FormField
         label="Ваше имя"
-        value={name}
+        value={value}
         name="name"
         changeHandler={changeHandler}
         type="input"

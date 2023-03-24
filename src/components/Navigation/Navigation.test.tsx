@@ -17,7 +17,7 @@ describe("Тестирование навигации", () => {
   it("Отображение выхода из аккаунта", () => {
     renderWithProviders(<Navigation />, {
       preloadedState: {
-        auth: { name: "aaa" },
+        auth: { currName: "aaa", form: {} },
         todos: {
           list: { todo: [], inprogress: [], done: [] },
           form: {

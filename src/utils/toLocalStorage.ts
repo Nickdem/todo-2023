@@ -2,17 +2,17 @@ import { ITodoObj } from "./interfaces";
 
 const delayTime = 1500;
 
-function getRandomInt(max: number) {
+const getRandomInt = (max: number) => {
   return Math.floor(Math.random() * max);
-}
+};
 
-function delay(fn: Function): Promise<string> {
+const delay = (fn: Function): Promise<string> => {
   return new Promise((resolve) =>
     setTimeout(() => resolve(fn()), getRandomInt(delayTime)),
   );
-}
+};
 
-function requestToTheServer(type: string, key: string, value?: string) {
+const requestToTheServer = (type: string, key: string, value?: string) => {
   if (type === "get") {
     return localStorage.getItem(key) || "{}";
   } else if (type === "post") {
@@ -20,18 +20,18 @@ function requestToTheServer(type: string, key: string, value?: string) {
   } else {
     return localStorage.removeItem(key);
   }
-}
+};
 
-async function checkUserReg(name: string) {
+const checkUserReg = async (name: string) => {
   const res = await delay(() => requestToTheServer("get", "todos"));
   const todos = await JSON.parse(res);
   if (Object.keys(todos).indexOf(name) !== -1) {
     return true;
   }
   return false;
-}
+};
 
-export async function setUserLC(name: string) {
+export const setUserLC = async (name: string) => {
   const check = await checkUserReg(name);
 
   if (check) {
@@ -39,22 +39,22 @@ export async function setUserLC(name: string) {
   } else {
     return { err: "такой юзера нет" };
   }
-}
+};
 
-export async function logoutUserLC() {
+export const logoutUserLC = async () => {
   await delay(() => requestToTheServer("post", "user", ""));
-}
+};
 
-export async function getUserLC() {
+export const getUserLC = async () => {
   const res: string = await delay(() => requestToTheServer("get", "user"));
   if (res === "{}") {
     return "";
   }
   const json = await JSON.parse(res);
   return json;
-}
+};
 
-export async function regUserLC(name: string) {
+export const regUserLC = async (name: string) => {
   const check = await checkUserReg(name);
   if (check) {
     return { err: "такой юзер уже есть" };
@@ -67,15 +67,15 @@ export async function regUserLC(name: string) {
 
     requestToTheServer("post", "todos", todos);
   }
-}
+};
 
-export async function getTodosLC(name: string) {
+export const getTodosLC = async (name: string) => {
   const res = await delay(() => requestToTheServer("get", "todos"));
   const json = (await typeof res) === "string" ? JSON.parse(res) : {};
   return json[name];
-}
+};
 
-export async function createTodoLC(item: ITodoObj) {
+export const createTodoLC = async (item: ITodoObj) => {
   const todosJson = requestToTheServer("get", "todos");
   const todos = typeof todosJson === "string" ? JSON.parse(todosJson) : {};
   const nameJson = requestToTheServer("get", "user");
@@ -87,9 +87,9 @@ export async function createTodoLC(item: ITodoObj) {
   await delay(() => requestToTheServer("post", "todos", todos));
 
   return item;
-}
+};
 
-export async function getTodoLC(id: string) {
+export const getTodoLC = async (id: string) => {
   const nameJson = requestToTheServer("get", "user");
   const name = typeof nameJson === "string" ? JSON.parse(nameJson) : "";
   const todosJson = await delay(() => requestToTheServer("get", "todos"));
@@ -97,9 +97,9 @@ export async function getTodoLC(id: string) {
     (await typeof todosJson) === "string" ? JSON.parse(todosJson) : {};
   const todo = await todos[name].todo.find((item: ITodoObj) => item.id === id);
   return todo;
-}
+};
 
-export async function changeTodoLC(todoItem: ITodoObj) {
+export const changeTodoLC = async (todoItem: ITodoObj) => {
   const nameJson = requestToTheServer("get", "user");
   const name = typeof nameJson === "string" ? JSON.parse(nameJson) : "";
   const todosJson = requestToTheServer("get", "todos");
@@ -111,4 +111,4 @@ export async function changeTodoLC(todoItem: ITodoObj) {
   todos[name].todo[idx] = todoItem;
   await delay(() => requestToTheServer("post", "todos", todos));
   return idx;
-}
+};

@@ -76,12 +76,14 @@ export const todosSlice = createSlice({
     });
     builder.addCase(createTodoItem.fulfilled, (state, action) => {
       state.list.todo.push(action.payload);
+      state.form = formValues;
     });
     builder.addCase(getTodoItemById.fulfilled, (state, action) => {
       state.form = action.payload;
     });
     builder.addCase(changeTodoItem.fulfilled, (state, action) => {
       state.list.todo[action.payload.idx] = action.payload.item;
+      state.form = formValues;
     });
   },
 });

@@ -20,10 +20,6 @@ export interface IMockTodoObj {
 
 export interface ITodosObj {
   [key: string]: Array<ITodoObj>;
-  // todo: Array<ITodoObj>;
-  // inprogress: Array<ITodoObj>;
-  // done: Array<ITodoObj>;
-  // todosLength: number;
 }
 
 export interface ILayoutProps {
@@ -48,8 +44,6 @@ export interface ITagProps {
   color: string;
 }
 
-// export type columnNames = "todo" | "inprogress" | "done";
-// export type IColumnNames = Record<columnNames, string>;
 export interface IColumnProps {
   name: string;
 }
@@ -87,5 +81,5 @@ export interface IFormFieldProps {
 export interface ISelectProps {
   value: string;
   changeSelect: Function;
-  onlyColors: boolean
+  onlyColors: boolean;
 }
