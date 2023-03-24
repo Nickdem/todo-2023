@@ -7,6 +7,7 @@ export interface ITodoObj {
   description: string;
   tag: string;
   id: string;
+  status: string;
 }
 
 // export interface ITodoObjWrapper {
@@ -14,9 +15,9 @@ export interface ITodoObj {
 //   items: Array<ITodoObj>;
 // }
 
-export interface IMockTodoObj {
-  [key: string]: Array<ITodoObj>;
-}
+// export interface IMockTodoObj {
+//   [key: string]: Array<ITodoObj>;
+// }
 
 export interface ITodosObj {
   [key: string]: Array<ITodoObj>;
@@ -36,7 +37,7 @@ export interface ITagListProps {
 export interface ISelectValueProps {
   clickHandler: Function;
   cls: string;
-  color: string;
+  item: string;
   container?: boolean;
 }
 
@@ -68,6 +69,7 @@ export interface IFormProps {
   text: string;
   title: string;
   clickHandler: Function;
+  deleteHandler?: Function;
 }
 
 export interface IFormFieldProps {
@@ -79,7 +81,8 @@ export interface IFormFieldProps {
 }
 
 export interface ISelectProps {
-  value: string;
+  item: string;
+  items: IStringObj;
   changeSelect: Function;
-  onlyColors: boolean;
+  all: boolean;
 }

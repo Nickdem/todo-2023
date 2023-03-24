@@ -6,10 +6,14 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import {
   changeTodoItem,
   createTodoItem,
+  deleteTodoItem,
   getTodoItemById,
   setForm,
+  setFormValues,
 } from "../../store/todos/todosSlice";
 import { useCallback, useEffect } from "react";
+import { colors, columnTitles, formValues } from "../../utils/consts";
+import { dateNow } from "../../utils/helpers";
 // import { formValues } from "../../utils/consts";
 
 const TodoForm = () => {
@@ -21,8 +25,11 @@ const TodoForm = () => {
     if (id && id !== "new") {
       dispatch(getTodoItemById(id));
     } else {
-      dispatch(setForm({ id: Date.now().toString() }));
+      dispatch(setForm({ id: dateNow(), status: "todo" }));
     }
+    return () => {
+      dispatch(setFormValues(formValues));
+    };
   }, [id, dispatch]);
 
   const changeHandler = useCallback(
@@ -32,21 +39,32 @@ const TodoForm = () => {
     [dispatch],
   );
 
-  const changeSelect = useCallback(
+  const changeTag = useCallback(
     (value: string) => {
       dispatch(setForm({ tag: value }));
     },
     [dispatch],
   );
 
+  const changeStatus = useCallback(
+    (value: string) => {
+      dispatch(setForm({ status: value }));
+    },
+    [dispatch],
+  );
+
   const submitHandler = useCallback(() => {
+    if (values.title.trim() === "") {
+      console.log("вы ничего не ввели");
+      return;
+    }
     if (id === "new") {
       dispatch(createTodoItem(values));
     } else {
       dispatch(changeTodoItem(values));
     }
 
-    dispatch(setForm({ id: Date.now().toString() }));
+    dispatch(setForm({ id: dateNow(), status: "todo" }));
   }, [dispatch, values, id]);
 
   return (
@@ -54,6 +72,7 @@ const TodoForm = () => {
       text={id !== "new" ? "Сохранить" : "Создать"}
       title={`Форма ${id !== "new" ? "редактирования" : "создания"} задачи`}
       clickHandler={submitHandler}
+      deleteHandler={() => dispatch(deleteTodoItem(values.id))}
     >
       <FormField
         label="Название"
@@ -70,9 +89,16 @@ const TodoForm = () => {
         type="textarea"
       />
       <Select
-        value={values.tag}
-        changeSelect={changeSelect}
-        onlyColors={true}
+        item={values.tag}
+        items={colors}
+        changeSelect={changeTag}
+        all={false}
+      />
+      <Select
+        item={values.status}
+        items={columnTitles}
+        changeSelect={changeStatus}
+        all={true}
       />
     </Form>
   );

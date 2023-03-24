@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../Button";
-import { navigationList, todosValues } from "../../utils/consts";
+import { navigationList } from "../../utils/consts";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { logoutUserName } from "../../store/auth/authSlice";
 import styles from "./Navigation.module.css";
@@ -20,7 +20,7 @@ const Navigation = () => {
               text={`Выйти из аккаунта(${name})`}
               clickHandler={() => {
                 dispatch(logoutUserName());
-                dispatch(setAllTodos(todosValues));
+                dispatch(setAllTodos([]));
               }}
               cls={styles["navigation-btn"]}
             />

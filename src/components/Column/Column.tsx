@@ -7,7 +7,9 @@ import { useMemo } from "react";
 import { filterTodos } from "../../utils/helpers";
 
 const Column = ({ name }: IColumnProps) => {
-  const todos = useAppSelector((state) => state.todos.list[name]);
+  const todos = useAppSelector((state) =>
+    state.todos.list.filter((item) => item.status === name),
+  );
   const filter = useAppSelector((state) => state.todos.filter);
 
   const visibleTodos = useMemo(

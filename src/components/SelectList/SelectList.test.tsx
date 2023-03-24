@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import TagList from "./TagList";
+import TagList from "./SelectList";
 
 describe("Отображение списка тегов", () => {
   it("Список  тегов отображается", () => {

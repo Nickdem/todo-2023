@@ -4,6 +4,7 @@ import {
   createTodoLC,
   getTodoLC,
   changeTodoLC,
+  deleteTodoLC,
 } from "../utils/toLocalStorage";
 
 export const getAllTodos = (name: string) => {
@@ -17,6 +18,11 @@ export const createTodo = (item: ITodoObj) => {
 export const getTodo = (id: string) => {
   return getTodoLC(id);
 };
+
+export const deleteTodo = (id: string) => {
+  return deleteTodoLC(id);
+};
+
 export const changeTodo = (item: ITodoObj) => {
   return changeTodoLC(item);
 };

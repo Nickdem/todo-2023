@@ -7,7 +7,7 @@ describe("Отображение значения", () => {
       <SelectValue
         cls="value"
         container={true}
-        color={"red"}
+        item={"red"}
         clickHandler={() => {}}
       />,
     );

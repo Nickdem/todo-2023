@@ -1,20 +1,32 @@
-import { FormEvent, useCallback } from "react";
+import { SyntheticEvent, useCallback } from "react";
 import Button from "../Button";
 import { IFormProps } from "../../utils/interfaces";
 import { classNameConcatination } from "../../utils/helpers";
 import styles from "./Form.module.css";
 import { useNavigate } from "react-router-dom";
 
-const Form = ({ children, title, text, clickHandler }: IFormProps) => {
+const Form = ({
+  children,
+  title,
+  text,
+  clickHandler,
+  deleteHandler = () => {},
+}: IFormProps) => {
   const navigate = useNavigate();
 
   const submitHandler = useCallback(
-    (e: FormEvent) => {
+    (e: SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
       e.preventDefault();
-      clickHandler();
+
+      if (e.nativeEvent.submitter?.innerText === "Удалить") {
+        deleteHandler();
+      } else {
+        clickHandler();
+      }
+
       navigate("/");
     },
-    [clickHandler, navigate],
+    [clickHandler, deleteHandler, navigate],
   );
 
   return (

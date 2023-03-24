@@ -1,10 +1,10 @@
 import Tag from "../Tag";
-import { colors } from "../../utils/consts";
+import { colors, columnTitles } from "../../utils/consts";
 import { ISelectValueProps } from "../../utils/interfaces";
 import styles from "./SelectValue.module.css";
 
 const SelectValue = ({
-  color,
+  item,
   cls,
   clickHandler,
   container = false,
@@ -16,9 +16,9 @@ const SelectValue = ({
         onClick={() => clickHandler()}
         data-testid="select-value"
       >
-        <Tag color={color} />
+        <Tag color={item} />
         <span className={styles.text} data-testid="select-text">
-          {colors[color]}
+          {colors[item] || columnTitles[item]}
         </span>
       </li>
     );
@@ -29,9 +29,9 @@ const SelectValue = ({
       onClick={() => clickHandler()}
       data-testid="select-value"
     >
-      <Tag color={color} />
+      <Tag color={item} />
       <span className={styles.text} data-testid="select-text">
-        {colors[color]}
+        {colors[item] || columnTitles[item]}
       </span>
     </div>
   );

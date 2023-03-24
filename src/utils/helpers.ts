@@ -19,3 +19,23 @@ export const filterTodos = (todos: Array<ITodoObj>, filter: string) => {
   }
   return todos.filter((todo) => todo.tag === filter);
 };
+
+const delayTime = 1500;
+
+const getRandomInt = (max: number) => {
+  return Math.floor(Math.random() * max);
+};
+
+export const delay = (fn: Function): Promise<string> => {
+  return new Promise((resolve) =>
+    setTimeout(() => resolve(fn()), getRandomInt(delayTime)),
+  );
+};
+
+export const dateNow = () => {
+  return Date.now().toString();
+};
+
+export const objectKeys = (obj: IStringObj) => {
+  return Object.keys(obj);
+};

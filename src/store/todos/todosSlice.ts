@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { IStringObj, ITodoObj, ITodosObj } from "../../utils/interfaces";
+import { IStringObj, ITodoObj } from "../../utils/interfaces";
 import {
   getAllTodos,
   createTodo,
   getTodo,
   changeTodo,
+  deleteTodo,
 } from "../../services/todoService";
-import { formValues, todosValues } from "../../utils/consts";
+import { formValues } from "../../utils/consts";
 
 export const getTodoList = createAsyncThunk(
   "todos/getTodoList",
@@ -41,14 +42,22 @@ export const changeTodoItem = createAsyncThunk(
   },
 );
 
+export const deleteTodoItem = createAsyncThunk(
+  "todos/deleteTodoItem",
+  async (id: string) => {
+    await deleteTodo(id);
+    return id;
+  },
+);
+
 interface ITodosState {
-  list: ITodosObj;
+  list: Array<ITodoObj>;
   form: ITodoObj;
   filter: string;
 }
 
 const initialState: ITodosState = {
-  list: todosValues,
+  list: [],
   form: formValues,
   filter: "all",
 };
@@ -57,7 +66,7 @@ export const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    setAllTodos: (state, action: PayloadAction<ITodosObj>) => {
+    setAllTodos: (state, action: PayloadAction<Array<ITodoObj>>) => {
       state.list = action.payload;
     },
     setForm: (state, action: PayloadAction<IStringObj>) => {
@@ -75,14 +84,18 @@ export const todosSlice = createSlice({
       state.list = action.payload;
     });
     builder.addCase(createTodoItem.fulfilled, (state, action) => {
-      state.list.todo.push(action.payload);
+      state.list.push(action.payload);
       state.form = formValues;
     });
     builder.addCase(getTodoItemById.fulfilled, (state, action) => {
       state.form = action.payload;
     });
     builder.addCase(changeTodoItem.fulfilled, (state, action) => {
-      state.list.todo[action.payload.idx] = action.payload.item;
+      state.list[action.payload.idx] = action.payload.item;
+      state.form = formValues;
+    });
+    builder.addCase(deleteTodoItem.fulfilled, (state, action) => {
+      state.list = state.list.filter((item) => item.id !== action.payload);
       state.form = formValues;
     });
   },

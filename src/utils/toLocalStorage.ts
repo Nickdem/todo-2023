@@ -1,16 +1,5 @@
+import { delay } from "./helpers";
 import { ITodoObj } from "./interfaces";
-
-const delayTime = 1500;
-
-const getRandomInt = (max: number) => {
-  return Math.floor(Math.random() * max);
-};
-
-const delay = (fn: Function): Promise<string> => {
-  return new Promise((resolve) =>
-    setTimeout(() => resolve(fn()), getRandomInt(delayTime)),
-  );
-};
 
 const requestToTheServer = (type: string, key: string, value?: string) => {
   if (type === "get") {
@@ -62,7 +51,7 @@ export const regUserLC = async (name: string) => {
     await delay(() => requestToTheServer("post", "user", name));
     const res = requestToTheServer("get", "todos");
     const todos = typeof res === "string" ? JSON.parse(res) : {};
-    todos[name] = { todo: [], inprogress: [], done: [] };
+    todos[name] = [];
     console.log(todos);
 
     requestToTheServer("post", "todos", todos);
@@ -80,9 +69,7 @@ export const createTodoLC = async (item: ITodoObj) => {
   const todos = typeof todosJson === "string" ? JSON.parse(todosJson) : {};
   const nameJson = requestToTheServer("get", "user");
   const name = typeof nameJson === "string" ? JSON.parse(nameJson) : "";
-  todos[name].todo.push(item);
-
-  console.log(todos, name);
+  todos[name].push(item);
 
   await delay(() => requestToTheServer("post", "todos", todos));
 
@@ -95,7 +82,7 @@ export const getTodoLC = async (id: string) => {
   const todosJson = await delay(() => requestToTheServer("get", "todos"));
   const todos =
     (await typeof todosJson) === "string" ? JSON.parse(todosJson) : {};
-  const todo = await todos[name].todo.find((item: ITodoObj) => item.id === id);
+  const todo = await todos[name].find((item: ITodoObj) => item.id === id);
   return todo;
 };
 
@@ -105,10 +92,20 @@ export const changeTodoLC = async (todoItem: ITodoObj) => {
   const todosJson = requestToTheServer("get", "todos");
   const todos = typeof todosJson === "string" ? JSON.parse(todosJson) : {};
 
-  const idx = todos[name].todo.findIndex(
+  const idx = todos[name].findIndex(
     (item: ITodoObj) => item.id === todoItem.id,
   );
-  todos[name].todo[idx] = todoItem;
+  todos[name][idx] = todoItem;
   await delay(() => requestToTheServer("post", "todos", todos));
   return idx;
+};
+
+export const deleteTodoLC = async (id: string) => {
+  const nameJson = requestToTheServer("get", "user");
+  const name = typeof nameJson === "string" ? JSON.parse(nameJson) : "";
+  const todosJson = requestToTheServer("get", "todos");
+  const todos = typeof todosJson === "string" ? JSON.parse(todosJson) : {};
+
+  todos[name] = await todos[name].filter((item: ITodoObj) => item.id !== id);
+  await delay(() => requestToTheServer("post", "todos", todos));
 };

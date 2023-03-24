@@ -1,4 +1,4 @@
-import { IMockTodoObj, IStringObj, ITodoObj } from "./interfaces";
+import { IStringObj, ITodoObj } from "./interfaces";
 
 export const navigationList = [
   {
@@ -16,96 +16,105 @@ export const formValues: ITodoObj = {
   description: "",
   id: "",
   tag: "red",
+  status: "todo",
 };
 
-export const todosValues = { todo: [], inprogress: [], done: [] };
+// export const todosValues = { todo: [], inprogress: [], done: [] };
 
 export const columnTitles: IStringObj = {
-  todo: "К выполнению",
+  todo: "К работе",
   inprogress: "В работе",
   done: "Готово",
 };
 
-export const getMockTodos: IMockTodoObj = {
-  todo: [
-    {
-      title: "дело1",
-      description: "описание дело1",
-      tag: "red",
-      id: "todo-1",
-    },
-    {
-      title: "дело2",
-      description: "описание дело2",
-      tag: "blue",
-      id: "todo-2",
-    },
-    {
-      title: "дело3",
-      description: "описание дело3",
-      tag: "green",
-      id: "todo-3",
-    },
-    {
-      title: "дело4",
-      description: "описание дело4",
-      tag: "red",
-      id: "todo-4",
-    },
-    {
-      title: "дело5",
-      description: "описание дело5",
-      tag: "blue",
-      id: "todo-5",
-    },
-    {
-      title: "дело6",
-      description: "описание дело6",
-      tag: "green",
-      id: "todo-6",
-    },
-  ],
-  inprogress: [
-    {
-      title: "дело1",
-      description: "описание дело1",
-      tag: "red",
-      id: "inprogress-1",
-    },
-    {
-      title: "дело2",
-      description: "описание дело2",
-      tag: "blue",
-      id: "inprogress-2",
-    },
-    {
-      title: "дело3",
-      description: "описание дело3",
-      tag: "green",
-      id: "inprogress-3",
-    },
-  ],
-  done: [
-    {
-      title: "дело1",
-      description: "описание дело1",
-      tag: "red",
-      id: "done-1",
-    },
-    {
-      title: "дело2",
-      description: "описание дело2",
-      tag: "blue",
-      id: "done-2",
-    },
-    {
-      title: "дело3",
-      description: "описание дело3",
-      tag: "green",
-      id: "done-3",
-    },
-  ],
-};
+export const getMockTodos: Array<ITodoObj> = [
+  {
+    title: "дело1",
+    description: "описание дело1",
+    tag: "red",
+    id: "todo-1",
+    status: "todo",
+  },
+  {
+    title: "дело2",
+    description: "описание дело2",
+    tag: "blue",
+    id: "todo-2",
+    status: "todo",
+  },
+  {
+    title: "дело3",
+    description: "описание дело3",
+    tag: "green",
+    id: "todo-3",
+    status: "todo",
+  },
+  {
+    title: "дело4",
+    description: "описание дело4",
+    tag: "red",
+    id: "todo-4",
+    status: "todo",
+  },
+  {
+    title: "дело5",
+    description: "описание дело5",
+    tag: "blue",
+    id: "todo-5",
+    status: "todo",
+  },
+  {
+    title: "дело6",
+    description: "описание дело6",
+    tag: "green",
+    id: "todo-6",
+    status: "todo",
+  },
+
+  {
+    title: "дело1",
+    description: "описание дело1",
+    tag: "red",
+    id: "inprogress-1",
+    status: "inprogress",
+  },
+  {
+    title: "дело2",
+    description: "описание дело2",
+    tag: "blue",
+    id: "inprogress-2",
+    status: "inprogress",
+  },
+  {
+    title: "дело3",
+    description: "описание дело3",
+    tag: "green",
+    id: "inprogress-3",
+    status: "inprogress",
+  },
+
+  {
+    title: "дело1",
+    description: "описание дело1",
+    tag: "red",
+    id: "done-1",
+    status: "done",
+  },
+  {
+    title: "дело2",
+    description: "описание дело2",
+    tag: "blue",
+    id: "done-2",
+    status: "done",
+  },
+  {
+    title: "дело3",
+    description: "описание дело3",
+    tag: "green",
+    id: "done-3",
+    status: "done",
+  },
+];
 
 export const colors: IStringObj = {
   all: "все",

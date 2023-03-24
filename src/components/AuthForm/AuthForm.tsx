@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Form from "../Form";
 import FormField from "../FormField";
@@ -10,6 +10,12 @@ const AuthForm = () => {
   const value = useAppSelector((state) => state.auth.form.name);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    return () => {
+      dispatch(setForm(""));
+    };
+  }, [dispatch]);
 
   const submitHandler = useCallback(() => {
     if (value.trim() === "") {

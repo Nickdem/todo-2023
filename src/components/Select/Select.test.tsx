@@ -1,9 +1,17 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { colors } from "../../utils/consts";
 import Select from "./Select";
 
 describe("Отображение селекта", () => {
   it("Селект отображается", () => {
-    render(<Select value="красный" changeSelect={()=>{}}  onlyColors={true}/>);
+    render(
+      <Select
+        item="красный"
+        items={colors}
+        changeSelect={() => {}}
+        all={true}
+      />,
+    );
     const select = screen.getByTestId("select");
 
     expect(select).toBeInTheDocument();
@@ -11,7 +19,14 @@ describe("Отображение селекта", () => {
   });
 
   it("Селект открывается и закрывается", () => {
-    render(<Select value="красный" changeSelect={()=>{}} onlyColors={true} />);
+    render(
+      <Select
+        item="красный"
+        items={colors}
+        changeSelect={() => {}}
+        all={true}
+      />,
+    );
     const selectValue = screen.getByTestId("select-value");
 
     expect(selectValue).toBeInTheDocument();

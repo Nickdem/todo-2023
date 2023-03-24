@@ -8,6 +8,7 @@ const item = {
   description: "описание",
   tag: "red",
   id: "todo-id",
+  status: "done",
 };
 
 describe("Тестирование задачи", () => {

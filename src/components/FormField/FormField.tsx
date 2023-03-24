@@ -21,7 +21,7 @@ const FormField = ({
         <input
           className={styles["form-input"]}
           type="text"
-          value={value}
+          value={value || ""}
           name={name}
           id={name}
           onChange={(e) => changeHandler(e)}
@@ -30,7 +30,7 @@ const FormField = ({
       ) : (
         <textarea
           className={styles["form-input"]}
-          value={value}
+          value={value || ""}
           name={name}
           id={name}
           cols={30}

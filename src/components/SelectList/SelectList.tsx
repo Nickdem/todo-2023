@@ -1,15 +1,20 @@
 import SelectValue from "../SelectValue";
 import { ITagListProps } from "../../utils/interfaces";
-import styles from "./TagList.module.css";
+import styles from "./SelectList.module.css";
 
-const TagList = ({ itemsList, cls, clickHandler, selected }: ITagListProps) => {
+const SelectList = ({
+  itemsList,
+  cls,
+  clickHandler,
+  selected,
+}: ITagListProps) => {
   return (
     <ul className={styles.taglist} data-testid="tag-list">
       {itemsList.map((item) => {
         return (
           <SelectValue
             key={item}
-            color={item}
+            item={item}
             cls={selected === item ? styles.active + " " + cls : cls}
             clickHandler={() => clickHandler(item)}
           />
@@ -19,4 +24,4 @@ const TagList = ({ itemsList, cls, clickHandler, selected }: ITagListProps) => {
   );
 };
 
-export default TagList;
+export default SelectList;

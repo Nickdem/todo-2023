@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { setFilter } from "../../store/todos/todosSlice";
+import { colors } from "../../utils/consts";
 import Select from "../Select";
 import styles from "./Filter.module.css";
 
@@ -17,7 +18,12 @@ const Filter = () => {
 
   return (
     <section className={styles.filter} data-testid="filter">
-      <Select value={select} changeSelect={changeSelect} onlyColors={false} />
+      <Select
+        item={select}
+        items={colors}
+        changeSelect={changeSelect}
+        all={true}
+      />
     </section>
   );
 };

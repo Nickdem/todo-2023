@@ -34,12 +34,13 @@ describe("Отображение элементов приложения", () =>
       preloadedState: {
         auth: { currName: "aaa", form: {} },
         todos: {
-          list: { todo: [], inprogress: [], done: [] },
+          list: [],
           form: {
             title: "",
             description: "",
             id: "",
             tag: "",
+            status: "",
           },
           filter: "all",
         },
