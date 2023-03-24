@@ -1,7 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { IStringObj, ITodoObj, ITodosObj } from "../../utils/interfaces";
-import { getAllTodos, createTodo } from "../../services/todoService";
+import {
+  getAllTodos,
+  createTodo,
+  getTodo,
+  changeTodo,
+} from "../../services/todoService";
+import { formValues, todosValues } from "../../utils/consts";
 
 export const getTodoList = createAsyncThunk(
   "todos/getTodoList",
@@ -14,9 +20,24 @@ export const getTodoList = createAsyncThunk(
 export const createTodoItem = createAsyncThunk(
   "todos/createTodoItem",
   async (item: ITodoObj) => {
-    item.id = Date.now().toString();
-    await createTodo(item);
-    return item;
+    const res = await createTodo(item);
+    return res;
+  },
+);
+
+export const getTodoItemById = createAsyncThunk(
+  "todos/getTodoItem",
+  async (id: string) => {
+    const res = await getTodo(id);
+    return res;
+  },
+);
+
+export const changeTodoItem = createAsyncThunk(
+  "todos/changeTodoItem",
+  async (item: ITodoObj) => {
+    const idx = await changeTodo(item);
+    return { item, idx };
   },
 );
 
@@ -26,13 +47,8 @@ interface ITodosState {
 }
 
 const initialState: ITodosState = {
-  list: { todo: [], inprogress: [], done: [] },
-  form: {
-    title: "",
-    description: "",
-    id: "",
-    tag: "",
-  },
+  list: todosValues,
+  form: formValues,
 };
 
 export const todosSlice = createSlice({
@@ -56,8 +72,14 @@ export const todosSlice = createSlice({
     builder.addCase(createTodoItem.fulfilled, (state, action) => {
       state.list.todo.push(action.payload);
     });
+    builder.addCase(getTodoItemById.fulfilled, (state, action) => {
+      state.form = action.payload;
+    });
+    builder.addCase(changeTodoItem.fulfilled, (state, action) => {
+      state.list.todo[action.payload.idx] = action.payload.item;
+    });
   },
 });
 
-export const { setAllTodos, setForm } = todosSlice.actions;
+export const { setAllTodos, setForm, setFormValues } = todosSlice.actions;
 export default todosSlice.reducer;

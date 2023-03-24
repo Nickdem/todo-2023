@@ -1,4 +1,4 @@
-import { IMockTodoObj, IStringObj } from "./interfaces";
+import { IMockTodoObj, IStringObj, ITodoObj } from "./interfaces";
 
 export const navigationList = [
   {
@@ -10,6 +10,15 @@ export const navigationList = [
     href: "up",
   },
 ];
+
+export const formValues: ITodoObj = {
+  title: "",
+  description: "",
+  id: "",
+  tag: "red",
+};
+
+export const todosValues = { todo: [], inprogress: [], done: [] };
 
 export const columnTitles: IStringObj = {
   todo: "К выполнению",

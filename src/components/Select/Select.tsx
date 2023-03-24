@@ -5,14 +5,15 @@ import { colors } from "../../utils/consts";
 import { useAppSelector } from "../../store";
 import { classNameConcatination } from "../../utils/classNameConcatination";
 import styles from "./Select.module.css";
+import { ISelectProps } from "../../utils/interfaces";
 
-const Select = () => {
-  const [select, setSelect] = useState("all");
+const Select = ({ value, changeSelect, onlyColors }: ISelectProps) => {
+  // const [select, setSelect] = useState("all");
   const [show, setShow] = useState(false);
   const name = useAppSelector((state) => state.auth.name);
 
-  function changeSelect(value: string) {
-    setSelect(value);
+  function changeHandler(selectValue: string) {
+    changeSelect(selectValue);
     setShow(false);
   }
 
@@ -33,19 +34,21 @@ const Select = () => {
       onMouseLeave={leaveHandler}
     >
       <SelectValue
-        color={select}
+        color={value}
         cls={styles["select-value"]}
         clickHandler={() => setShow(true)}
         container={true}
       />
-      {show ? (
+      {show && (
         <TagList
-          itemsList={Object.keys(colors)}
+          itemsList={
+            onlyColors ? Object.keys(colors).slice(1) : Object.keys(colors)
+          }
           cls={styles["select-value"]}
-          clickHandler={changeSelect}
-          selected={select}
+          clickHandler={changeHandler}
+          selected={value}
         />
-      ) : null}
+      )}
     </div>
   );
 };

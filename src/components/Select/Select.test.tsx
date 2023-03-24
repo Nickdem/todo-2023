@@ -3,7 +3,7 @@ import Select from "./Select";
 
 describe("Отображение селекта", () => {
   it("Селект отображается", () => {
-    render(<Select />);
+    render(<Select value="красный" changeSelect={()=>{}}  onlyColors={true}/>);
     const select = screen.getByTestId("select");
 
     expect(select).toBeInTheDocument();
@@ -11,7 +11,7 @@ describe("Отображение селекта", () => {
   });
 
   it("Селект открывается и закрывается", () => {
-    render(<Select />);
+    render(<Select value="красный" changeSelect={()=>{}} onlyColors={true} />);
     const selectValue = screen.getByTestId("select-value");
 
     expect(selectValue).toBeInTheDocument();

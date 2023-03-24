@@ -83,3 +83,9 @@ export interface IFormFieldProps {
   changeHandler: Function;
   type: string;
 }
+
+export interface ISelectProps {
+  value: string;
+  changeSelect: Function;
+  onlyColors: boolean
+}

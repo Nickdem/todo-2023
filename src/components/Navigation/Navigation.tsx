@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import Button from "../Button";
-import { navigationList } from "../../utils/consts";
+import { navigationList, todosValues } from "../../utils/consts";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { logoutUserName } from "../../store/auth/authSlice";
 import styles from "./Navigation.module.css";
+import { setAllTodos } from "../../store/todos/todosSlice";
 
 const Navigation = () => {
   const name = useAppSelector((state) => state.auth.name);
@@ -19,6 +20,7 @@ const Navigation = () => {
               text={`Выйти из аккаунта(${name})`}
               clickHandler={() => {
                 dispatch(logoutUserName());
+                dispatch(setAllTodos(todosValues));
               }}
               cls={styles["navigation-btn"]}
             />

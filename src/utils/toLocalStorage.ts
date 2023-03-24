@@ -62,7 +62,7 @@ export async function regUserLC(name: string) {
     await delay(() => requestToTheServer("post", "user", name));
     const res = requestToTheServer("get", "todos");
     const todos = typeof res === "string" ? JSON.parse(res) : {};
-    todos[name] = { todo: [], inprogress: [], done: [], todosLength: 50 };
+    todos[name] = { todo: [], inprogress: [], done: [] };
     console.log(todos);
 
     requestToTheServer("post", "todos", todos);
@@ -75,6 +75,40 @@ export async function getTodosLC(name: string) {
   return json[name];
 }
 
-export function createTodoLC(item: ITodoObj) {
-  console.log(item);
+export async function createTodoLC(item: ITodoObj) {
+  const todosJson = requestToTheServer("get", "todos");
+  const todos = typeof todosJson === "string" ? JSON.parse(todosJson) : {};
+  const nameJson = requestToTheServer("get", "user");
+  const name = typeof nameJson === "string" ? JSON.parse(nameJson) : "";
+  todos[name].todo.push(item);
+
+  console.log(todos, name);
+
+  await delay(() => requestToTheServer("post", "todos", todos));
+
+  return item;
+}
+
+export async function getTodoLC(id: string) {
+  const nameJson = requestToTheServer("get", "user");
+  const name = typeof nameJson === "string" ? JSON.parse(nameJson) : "";
+  const todosJson = await delay(() => requestToTheServer("get", "todos"));
+  const todos =
+    (await typeof todosJson) === "string" ? JSON.parse(todosJson) : {};
+  const todo = await todos[name].todo.find((item: ITodoObj) => item.id === id);
+  return todo;
+}
+
+export async function changeTodoLC(todoItem: ITodoObj) {
+  const nameJson = requestToTheServer("get", "user");
+  const name = typeof nameJson === "string" ? JSON.parse(nameJson) : "";
+  const todosJson = requestToTheServer("get", "todos");
+  const todos = typeof todosJson === "string" ? JSON.parse(todosJson) : {};
+
+  const idx = todos[name].todo.findIndex(
+    (item: ITodoObj) => item.id === todoItem.id,
+  );
+  todos[name].todo[idx] = todoItem;
+  await delay(() => requestToTheServer("post", "todos", todos));
+  return idx;
 }

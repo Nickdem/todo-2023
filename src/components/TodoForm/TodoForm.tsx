@@ -4,7 +4,15 @@ import Select from "../Select";
 import Form from "../Form";
 import FormField from "../FormField";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { createTodoItem, setForm } from "../../store/todos/todosSlice";
+import {
+  changeTodoItem,
+  createTodoItem,
+  getTodoItemById,
+  setForm,
+  setFormValues,
+} from "../../store/todos/todosSlice";
+import { useCallback, useEffect } from "react";
+import { formValues } from "../../utils/consts";
 
 const TodoForm = () => {
   const { id } = useParams();
@@ -25,17 +33,44 @@ const TodoForm = () => {
   //   setValues(item);
   // }, [id]);
 
-  function changeHandler(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) {
-    dispatch(setForm({ [e.target.name]: e.target.value }));
-    // dispatch(setForm({ name: e.target.name, value: e.target.value }));
-  }
+  useEffect(() => {
+    if (id && id !== "new") {
+      dispatch(getTodoItemById(id));
+    } else {
+      dispatch(setForm({ id: Date.now().toString() }));
+    }
+  }, [id, dispatch]);
+  // function changeHandler(
+  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  // ) {
+  //   dispatch(setForm({ [e.target.name]: e.target.value }));
+  //   // dispatch(setForm({ name: e.target.name, value: e.target.value }));
+  // }
 
-  function submitHandler() {
-    console.log(values);
-    dispatch(createTodoItem(values));
-  }
+  const changeHandler = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      dispatch(setForm({ [e.target.name]: e.target.value }));
+    },
+    [dispatch],
+  );
+
+  const changeSelect = useCallback(
+    (value: string) => {
+      dispatch(setForm({ tag: value }));
+    },
+    [dispatch],
+  );
+
+  const submitHandler = useCallback(() => {
+    if (id === "new") {
+      dispatch(createTodoItem(values));
+    } else {
+      dispatch(changeTodoItem(values));
+    }
+
+    dispatch(setFormValues(formValues));
+    dispatch(setForm({ id: Date.now().toString() }));
+  }, [dispatch, values, id]);
 
   return (
     <Form
@@ -57,7 +92,11 @@ const TodoForm = () => {
         changeHandler={changeHandler}
         type="textarea"
       />
-      <Select />
+      <Select
+        value={values.tag}
+        changeSelect={changeSelect}
+        onlyColors={true}
+      />
     </Form>
   );
 };
