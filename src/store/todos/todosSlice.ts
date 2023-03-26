@@ -54,12 +54,16 @@ interface ITodosState {
   list: Array<ITodoObj>;
   form: ITodoObj;
   filter: string;
+  loading: boolean;
+  formLoading: boolean;
 }
 
 const initialState: ITodosState = {
   list: [],
   form: formValues,
   filter: "all",
+  loading: false,
+  formLoading: false,
 };
 
 export const todosSlice = createSlice({
@@ -80,15 +84,23 @@ export const todosSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(getTodoList.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(getTodoList.fulfilled, (state, action) => {
       state.list = action.payload;
+      state.loading = false;
     });
     builder.addCase(createTodoItem.fulfilled, (state, action) => {
       state.list.push(action.payload);
       state.form = formValues;
     });
+    builder.addCase(getTodoItemById.pending, (state) => {
+      state.formLoading = true;
+    });
     builder.addCase(getTodoItemById.fulfilled, (state, action) => {
       state.form = action.payload;
+      state.formLoading = false;
     });
     builder.addCase(changeTodoItem.fulfilled, (state, action) => {
       state.list[action.payload.idx] = action.payload.item;

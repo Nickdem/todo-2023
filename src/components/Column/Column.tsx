@@ -5,12 +5,13 @@ import styles from "./Column.module.css";
 import { useAppSelector } from "../../store";
 import { useMemo } from "react";
 import { filterTodos } from "../../utils/helpers";
+import Loader from "../Loader";
 
 const Column = ({ name }: IColumnProps) => {
   const todos = useAppSelector((state) =>
     state.todos.list.filter((item) => item.status === name),
   );
-  const filter = useAppSelector((state) => state.todos.filter);
+  const { filter, loading } = useAppSelector((state) => state.todos);
 
   const visibleTodos = useMemo(
     () => filterTodos(todos, filter),
@@ -23,12 +24,13 @@ const Column = ({ name }: IColumnProps) => {
         {columnTitles[name]}
       </h1>
       <ul className={styles["column-list"]} data-testid="column-list">
+        {loading && <Loader size="big" />}
         {visibleTodos.length ? (
           visibleTodos.map((item: ITodoObj) => (
             <Todo item={item} key={item.id} />
           ))
         ) : (
-          <p>Пусто</p>
+          <p>Пусто!</p>
         )}
       </ul>
     </div>

@@ -4,10 +4,8 @@ import styles from "./Error.module.css";
 export const ErrorComponent = () => {
   return (
     <div className={styles.error}>
-      <h1 className={styles["error-title"]}>Oops!</h1>
-      <p className={styles["error-text"]}>
-        Sorry, an unexpected error has occurred.
-      </p>
+      <h1 className={styles["error-title"]}>404</h1>
+      <p className={styles["error-text"]}>Страница не найдена!</p>
     </div>
   );
 };

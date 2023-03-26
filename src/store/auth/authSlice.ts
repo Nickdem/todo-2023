@@ -18,8 +18,7 @@ export const setAuthName = createAsyncThunk(
   async (name: string) => {
     const res = await setUser(name);
     if (res?.err) {
-      console.log(res.err);
-      throw new Error();
+      throw new Error(res.err);
     }
     return name;
   },
@@ -30,8 +29,7 @@ export const regUserName = createAsyncThunk(
   async (name: string) => {
     const res = await regUser(name);
     if (res?.err) {
-      console.log(res.err);
-      throw new Error();
+      throw new Error(res?.err);
     }
     return name;
   },
@@ -44,11 +42,15 @@ export const logoutUserName = createAsyncThunk("auth/logoutName", async () => {
 interface IAuthState {
   currName: string;
   form: IStringObj;
+  loading: boolean;
+  error: string;
 }
 
 const initialState: IAuthState = {
   currName: "",
   form: { value: "" },
+  loading: false,
+  error: "",
 };
 
 export const authSlice = createSlice({
@@ -64,26 +66,44 @@ export const authSlice = createSlice({
     setForm: (state, action: PayloadAction<string>) => {
       state.form.name = action.payload;
     },
+    setError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+    },
   },
   extraReducers: (builder) => {
+    builder.addCase(getAuthName.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(getAuthName.fulfilled, (state, action) => {
       state.currName = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(setAuthName.pending, (state) => {
+      state.loading = true;
     });
     builder.addCase(setAuthName.fulfilled, (state, action) => {
       state.currName = action.payload;
       state.form.name = "";
+      state.loading = false;
     });
-    builder.addCase(setAuthName.rejected, (state) => {
+    builder.addCase(setAuthName.rejected, (state, action) => {
       state.currName = "";
       state.form.name = "";
+      state.loading = false;
+      state.error = action.error.message || "";
+    });
+    builder.addCase(regUserName.pending, (state) => {
+      state.loading = true;
     });
     builder.addCase(regUserName.fulfilled, (state, action) => {
       state.currName = action.payload;
       state.form.name = "";
     });
-    builder.addCase(regUserName.rejected, (state) => {
+    builder.addCase(regUserName.rejected, (state, action) => {
       state.currName = "";
       state.form.name = "";
+      state.loading = false;
+      state.error = action.error.message || "";
     });
     builder.addCase(logoutUserName.fulfilled, (state) => {
       state.currName = "";
@@ -91,5 +111,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { login, logout, setForm } = authSlice.actions;
+export const { login, logout, setForm, setError } = authSlice.actions;
 export default authSlice.reducer;

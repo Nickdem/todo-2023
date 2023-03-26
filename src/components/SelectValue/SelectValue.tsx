@@ -16,7 +16,7 @@ const SelectValue = ({
         onClick={() => clickHandler()}
         data-testid="select-value"
       >
-        <Tag color={item} />
+        {colors[item] && <Tag color={item} />}
         <span className={styles.text} data-testid="select-text">
           {colors[item] || columnTitles[item]}
         </span>
@@ -29,7 +29,7 @@ const SelectValue = ({
       onClick={() => clickHandler()}
       data-testid="select-value"
     >
-      <Tag color={item} />
+      {colors[item] && <Tag color={item} />}
       <span className={styles.text} data-testid="select-text">
         {colors[item] || columnTitles[item]}
       </span>

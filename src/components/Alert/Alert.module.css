@@ -1,0 +1,24 @@
+.alert {
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
+  padding: 40px;
+  border: 1px solid var(--main-gray);
+  box-shadow: 0 0 4px var(--main-black);
+  border-radius: 4px;
+  color: var(--main-grey);
+}
+
+.alert--red {
+  background-color: var(--main-red);
+}
+
+.alert-close {
+  color: var(--main-grey);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+}

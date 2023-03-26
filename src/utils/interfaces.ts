@@ -49,6 +49,10 @@ export interface IColumnProps {
   name: string;
 }
 
+export interface ILoaderProps {
+  size: string;
+}
+
 export interface ITodoProps {
   item: ITodoObj;
 }

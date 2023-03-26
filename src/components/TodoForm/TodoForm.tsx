@@ -14,11 +14,12 @@ import {
 import { useCallback, useEffect } from "react";
 import { colors, columnTitles, formValues } from "../../utils/consts";
 import { dateNow } from "../../utils/helpers";
-// import { formValues } from "../../utils/consts";
+import { setError } from "../../store/auth/authSlice";
+import Loader from "../Loader";
 
 const TodoForm = () => {
   const { id } = useParams();
-  const values = useAppSelector((state) => state.todos.form);
+  const { form, formLoading } = useAppSelector((state) => state.todos);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -54,48 +55,50 @@ const TodoForm = () => {
   );
 
   const submitHandler = useCallback(() => {
-    if (values.title.trim() === "") {
-      console.log("вы ничего не ввели");
+    if (form.title.trim() === "") {
+      dispatch(setError("вы ничего не ввели"));
       return;
     }
     if (id === "new") {
-      dispatch(createTodoItem(values));
+      dispatch(createTodoItem(form));
     } else {
-      dispatch(changeTodoItem(values));
+      dispatch(changeTodoItem(form));
     }
 
     dispatch(setForm({ id: dateNow(), status: "todo" }));
-  }, [dispatch, values, id]);
+  }, [dispatch, form, id]);
+
+  if (formLoading) return <Loader size="big" />;
 
   return (
     <Form
       text={id !== "new" ? "Сохранить" : "Создать"}
       title={`Форма ${id !== "new" ? "редактирования" : "создания"} задачи`}
       clickHandler={submitHandler}
-      deleteHandler={() => dispatch(deleteTodoItem(values.id))}
+      deleteHandler={() => dispatch(deleteTodoItem(form.id))}
     >
       <FormField
         label="Название"
-        value={values.title}
+        value={form.title}
         name="title"
         changeHandler={changeHandler}
         type="input"
       />
       <FormField
         label="Описание"
-        value={values.description}
+        value={form.description}
         name="description"
         changeHandler={changeHandler}
         type="textarea"
       />
       <Select
-        item={values.tag}
+        item={form.tag}
         items={colors}
         changeSelect={changeTag}
         all={false}
       />
       <Select
-        item={values.status}
+        item={form.status}
         items={columnTitles}
         changeSelect={changeStatus}
         all={true}

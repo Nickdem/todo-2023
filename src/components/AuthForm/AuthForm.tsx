@@ -3,7 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import Form from "../Form";
 import FormField from "../FormField";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { regUserName, setAuthName, setForm } from "../../store/auth/authSlice";
+import {
+  regUserName,
+  setAuthName,
+  setError,
+  setForm,
+} from "../../store/auth/authSlice";
 
 const AuthForm = () => {
   const { id } = useParams();
@@ -19,11 +24,11 @@ const AuthForm = () => {
 
   const submitHandler = useCallback(() => {
     if (value.trim() === "") {
-      console.log("вы ничего не ввели");
+      dispatch(setError("вы ничего не ввели"));
       return;
     }
     if (!/^[A-Za-z-]+$/.test(value)) {
-      console.log("Не используйте цифры и пробелы");
+      dispatch(setError("Не используйте цифры и пробелы"));
       return;
     }
 

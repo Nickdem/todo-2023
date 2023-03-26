@@ -32,7 +32,7 @@ describe("Отображение элементов приложения", () =>
   it("Отображение колонок", () => {
     renderWithProviders(<App />, {
       preloadedState: {
-        auth: { currName: "aaa", form: {} },
+        auth: { currName: "aaa", form: {}, loading: true, error: "" },
         todos: {
           list: [],
           form: {
@@ -43,6 +43,8 @@ describe("Отображение элементов приложения", () =>
             status: "",
           },
           filter: "all",
+          loading: true,
+          formLoading: true,
         },
       },
     });
