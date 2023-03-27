@@ -1,7 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
 import App from "../../App";
 import { renderWithProviders, stateForTests } from "../../utils/forTests";
-import AuthForm from "../AuthForm";
 
 describe("Тестирование формы авторизации", () => {
   it("Отображение формы создания", () => {

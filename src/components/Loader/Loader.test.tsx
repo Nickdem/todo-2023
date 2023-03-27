@@ -3,7 +3,7 @@ import App from "../../App";
 import { renderWithProviders, stateForTests } from "../../utils/forTests";
 
 describe("Тестирование Лоадера", () => {
-  it("Лоадер появляется и исчезает", async() => {
+  it("Лоадер появляется и исчезает", async () => {
     renderWithProviders(<App />, {
       preloadedState: stateForTests("", "", true),
     });

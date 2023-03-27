@@ -1,6 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { colors } from "../../utils/consts";
-import { renderWithProviders, stateForTests } from "../../utils/forTests";
+import { renderWithProviders } from "../../utils/forTests";
 import Filter from "../Filter";
 import Select from "./Select";
 

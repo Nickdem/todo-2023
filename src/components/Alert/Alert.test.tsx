@@ -1,5 +1,4 @@
 import { screen } from "@testing-library/react";
-import App from "../../App";
 import { renderWithProviders, stateForTests } from "../../utils/forTests";
 import Alert from "./Alert";
 

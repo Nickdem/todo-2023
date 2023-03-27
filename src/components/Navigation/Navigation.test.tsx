@@ -1,8 +1,4 @@
-import {
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { renderWithProviders, stateForTests } from "../../utils/forTests";
 import Navigation from "./Navigation";
 

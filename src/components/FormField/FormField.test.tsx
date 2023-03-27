@@ -1,6 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import App from "../../App";
-import { renderWithProviders } from "../../utils/forTests";
+import { render, screen } from "@testing-library/react";
 import FormField from "./FormField";
 
 describe("Тестирование полей формы", () => {

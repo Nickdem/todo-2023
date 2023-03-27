@@ -20,19 +20,19 @@ describe("Отображение элементов приложения", () =>
     });
     const loader = screen.getByTestId("loader");
     expect(loader).toBeInTheDocument();
-    await waitForElementToBeRemoved(loader, { timeout: 5000 }).then(() => {
+    await waitForElementToBeRemoved(loader).then(() => {
       expect(loader).not.toBeInTheDocument();
     });
 
     await waitFor(() => {
-      const nav = screen.getByTestId("nav");
-      const list = screen.getByTestId("nav-list");
-      const links = screen.getAllByTestId("nav-link");
-
-      expect(nav).toContainElement(list);
-      expect(links[0]).toHaveTextContent("Войти");
-      expect(links[1]).toHaveTextContent("Регистрация");
+      expect(screen.getByTestId("nav")).toContainElement(
+        screen.getByTestId("nav-list"),
+      );
     });
+
+    const links = screen.getAllByTestId("nav-link");
+    expect(links[0]).toHaveTextContent("Войти");
+    expect(links[1]).toHaveTextContent("Регистрация");
   });
 
   it("Отображение фильтра", () => {
