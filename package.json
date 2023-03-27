@@ -1,7 +1,7 @@
 {
   "name": "todo-2023",
   "version": "0.1.0",
-  "homepage": ".",
+  "homepage": "./todo-2023",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
