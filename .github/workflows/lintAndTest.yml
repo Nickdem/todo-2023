@@ -5,6 +5,8 @@ on:
     branches:
       - "*"
       - "!gh-pages"
+permissions:
+  contents: write
 jobs:
   lint:
     name: lint and test project
