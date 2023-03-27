@@ -1,14 +1,16 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderWithProviders, stateForTests } from "../../utils/forTests";
 import TagList from "./SelectList";
 
 describe("Отображение списка тегов", () => {
   it("Список  тегов отображается", () => {
-    render(
+    renderWithProviders(
       <TagList
         itemsList={["red", "green", "blue"]}
         cls={"list"}
         clickHandler={() => {}}
       />,
+      { preloadedState: stateForTests("Vasya", "", true) },
     );
     const tagList = screen.getByTestId("tag-list");
     const selectValues = screen.getAllByTestId("select-value");

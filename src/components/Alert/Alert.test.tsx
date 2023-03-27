@@ -1,10 +1,15 @@
+import { screen } from "@testing-library/react";
 import App from "../../App";
-import { renderWithProviders } from "../../utils/forTests";
+import { renderWithProviders, stateForTests } from "../../utils/forTests";
+import Alert from "./Alert";
 
-describe("Тестирование Лайоута", () => {
-  it("временный", () => {
-    renderWithProviders(<App />);
-
-    expect(document.body).toBeInTheDocument(); //временно
+describe("Тестирование Алерта", () => {
+  it("Алерт отображается", () => {
+    renderWithProviders(<Alert />, {
+      preloadedState: stateForTests("", "Ошибка", false),
+    });
+    const alert = screen.getByTestId("alert");
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Ошибкаx");
   });
 });

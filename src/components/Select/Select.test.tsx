@@ -1,32 +1,22 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { colors } from "../../utils/consts";
+import { renderWithProviders, stateForTests } from "../../utils/forTests";
+import Filter from "../Filter";
 import Select from "./Select";
 
 describe("Отображение селекта", () => {
   it("Селект отображается", () => {
-    render(
-      <Select
-        item="красный"
-        items={colors}
-        changeSelect={() => {}}
-        all={true}
-      />,
+    renderWithProviders(
+      <Select item="red" items={colors} changeSelect={() => {}} all={true} />,
     );
     const select = screen.getByTestId("select");
 
     expect(select).toBeInTheDocument();
-    expect(select).toHaveTextContent("все");
+    expect(select).toHaveTextContent("красный");
   });
 
   it("Селект открывается и закрывается", () => {
-    render(
-      <Select
-        item="красный"
-        items={colors}
-        changeSelect={() => {}}
-        all={true}
-      />,
-    );
+    renderWithProviders(<Filter />);
     const selectValue = screen.getByTestId("select-value");
 
     expect(selectValue).toBeInTheDocument();

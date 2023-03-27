@@ -1,5 +1,9 @@
-import { screen } from "@testing-library/react";
-import { renderWithProviders } from "../../utils/forTests";
+import {
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
+import { renderWithProviders, stateForTests } from "../../utils/forTests";
 import Navigation from "./Navigation";
 
 describe("Тестирование навигации", () => {
@@ -14,30 +18,16 @@ describe("Тестирование навигации", () => {
     expect(items[1]).toHaveTextContent("Регистрация");
   });
 
-  it("Отображение выхода из аккаунта", () => {
+  it("Отображение выхода из аккаунта", async () => {
     renderWithProviders(<Navigation />, {
-      preloadedState: {
-        auth: { currName: "aaa", form: {}, loading: true, error: "" },
-        todos: {
-          list: [],
-          form: {
-            title: "",
-            description: "",
-            id: "",
-            tag: "",
-            status: "",
-          },
-          filter: "all",
-          loading: true,
-          formLoading: true,
-        },
-      },
+      preloadedState: stateForTests("Sanya", "", false),
     });
+
     const list = screen.getByTestId("nav-list");
     const items = screen.getAllByTestId("exit-btn");
 
     expect(list).toBeInTheDocument();
     expect(items).toHaveLength(1);
-    expect(items[0]).toHaveTextContent("Выйти из аккаунта(aaa)");
+    expect(items[0]).toHaveTextContent("Выйти из аккаунта(Sanya)");
   });
 });

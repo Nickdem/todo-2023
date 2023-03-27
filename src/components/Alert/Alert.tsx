@@ -9,7 +9,10 @@ const Alert = () => {
   const dispatch = useAppDispatch();
   if (!message) return null;
   return (
-    <div className={classNameConcatination(styles, ["alert", `alert--red`])}>
+    <div
+      className={classNameConcatination(styles, ["alert", `alert--red`])}
+      data-testid="alert"
+    >
       <h3 className={styles["alert-text"]}>{message}</h3>
       <Button
         text="x"

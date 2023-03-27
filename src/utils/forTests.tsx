@@ -9,6 +9,7 @@ import type { AppStore, RootState } from "../store";
 import authReducer from "../store/auth/authSlice";
 import todosReducer from "../store/todos/todosSlice";
 import { MemoryRouter } from "react-router-dom";
+import { formValues, getMockTodos } from "./consts";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
@@ -36,3 +37,21 @@ export const renderWithProviders = (
 
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 };
+
+export const stateForTests = (
+  currName: string,
+  error: string,
+  showItems: boolean,
+  todosLoading?: boolean,
+  todoLoading?: boolean,
+  authLoading?: boolean,
+): PreloadedState<RootState> => ({
+  auth: { currName, form: { name: "" }, loading: authLoading || false, error },
+  todos: {
+    list: showItems ? getMockTodos : [],
+    form: formValues,
+    filter: "all",
+    loading: todosLoading || false,
+    formLoading: todoLoading || false,
+  },
+});

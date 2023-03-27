@@ -6,6 +6,7 @@ const Loader = ({ size }: ILoaderProps) => {
   return (
     <div
       className={classNameConcatination(styles, ["loader", `loader--${size}`])}
+      data-testid="loader"
     >
       <div />
       <div />

@@ -1,6 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
 import App from "../../App";
-import { renderWithProviders } from "../../utils/forTests";
+import { renderWithProviders, stateForTests } from "../../utils/forTests";
 import Todo from "./Todo";
 
 const item = {
@@ -25,7 +25,9 @@ describe("Тестирование задачи", () => {
   });
 
   it("Нажатие на задачу и появление модального окна", () => {
-    renderWithProviders(<App />);
+    renderWithProviders(<App />, {
+      preloadedState: stateForTests("Vasya", "", true),
+    });
     const todo = screen.getAllByTestId("todo");
     fireEvent.click(todo[0]);
 
