@@ -26,7 +26,7 @@ export const setUserLC = async (name: string) => {
   if (check) {
     await delay(() => requestToTheServer("post", "user", name));
   } else {
-    return { err: "такой юзера нет" };
+    return { err: "такого юзера нет" };
   }
 };
 

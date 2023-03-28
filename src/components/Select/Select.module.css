@@ -22,6 +22,18 @@
   transition: all 0.44s ease;
 }
 
+.select-value--default {
+  position: relative;
+}
+
+.select-value--default::after {
+  content: "↓";
+  position: absolute;
+  color: var(--main-black);
+  top: 11px;
+  right: 5px;
+}
+
 .select-value:hover {
   background-color: var(--main-gray);
 }

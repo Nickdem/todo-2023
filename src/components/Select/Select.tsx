@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import SelectList from "../SelectList/SelectList";
 import SelectValue from "../SelectValue";
-import { objectKeys } from "../../utils/helpers";
+import { classNameConcatination, objectKeys } from "../../utils/helpers";
 import styles from "./Select.module.css";
 import { ISelectProps } from "../../utils/interfaces";
 
@@ -32,7 +32,10 @@ const Select = ({ label, item, items, changeSelect, all }: ISelectProps) => {
       >
         <SelectValue
           item={item}
-          cls={styles["select-value"]}
+          cls={classNameConcatination(styles, [
+            "select-value",
+            "select-value--default",
+          ])}
           clickHandler={() => setShow(true)}
           container={true}
         />
