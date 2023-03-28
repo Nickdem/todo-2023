@@ -52,7 +52,6 @@ export const regUserLC = async (name: string) => {
     const res = requestToTheServer("get", "todos");
     const todos = typeof res === "string" ? JSON.parse(res) : {};
     todos[name] = [];
-    console.log(todos);
 
     requestToTheServer("post", "todos", todos);
   }

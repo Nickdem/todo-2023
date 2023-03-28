@@ -27,8 +27,8 @@ const AuthForm = () => {
       dispatch(setError("вы ничего не ввели"));
       return;
     }
-    if (!/^[A-Za-z-]+$/.test(value)) {
-      dispatch(setError("Не используйте цифры и пробелы"));
+    if (!/^[a-zA-Z0-9-_]+$/.test(value)) {
+      dispatch(setError("Не используйте кириллицу и пробелы"));
       return;
     }
 
@@ -56,7 +56,7 @@ const AuthForm = () => {
       clickHandler={submitHandler}
     >
       <FormField
-        label="Ваше имя"
+        label="Ваш никнейм"
         value={value}
         name="name"
         changeHandler={changeHandler}

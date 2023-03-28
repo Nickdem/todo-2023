@@ -12,7 +12,7 @@ describe("Тестирование формы авторизации", () => {
     const btn = screen.getByTestId("save-btn");
     expect(form).toBeInTheDocument();
     expect(title).toHaveTextContent("Форма авторизации");
-    expect(label).toHaveTextContent("Ваше имя");
+    expect(label).toHaveTextContent("Ваш никнейм");
     expect(inp).toBeInTheDocument();
     expect(btn).toHaveTextContent("Регистрация");
   });
