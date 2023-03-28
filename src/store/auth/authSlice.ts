@@ -98,6 +98,7 @@ export const authSlice = createSlice({
     builder.addCase(regUserName.fulfilled, (state, action) => {
       state.currName = action.payload;
       state.form.name = "";
+      state.loading = false;
     });
     builder.addCase(regUserName.rejected, (state, action) => {
       state.currName = "";
