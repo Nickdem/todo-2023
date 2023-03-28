@@ -1,10 +1,12 @@
 import { fireEvent, screen } from "@testing-library/react";
-import { renderWithProviders } from "../../utils/forTests";
+import { renderWithProviders, stateForTests } from "../../utils/forTests";
 import Filter from "./Filter";
 
 describe("Тестирование фильтра", () => {
   it("Селект открывается и закрывается", () => {
-    renderWithProviders(<Filter />);
+    renderWithProviders(<Filter />, {
+      preloadedState: stateForTests("Maria", "", false),
+    });
     const selectValue = screen.getByTestId("select-value");
 
     expect(selectValue).toBeInTheDocument();

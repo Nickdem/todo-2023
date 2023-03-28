@@ -1,3 +1,16 @@
 .filter {
-  padding: 20px 0;
+  display: flex;
+  column-gap: 20px;
+  align-items: flex-start;
+  padding-top: 10px;
+}
+
+.filter-title {
+  font-size: 24px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.filter-item {
+  max-width: 280px;
 }

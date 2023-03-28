@@ -92,12 +92,14 @@ const TodoForm = () => {
         type="textarea"
       />
       <Select
+        label="Тэг"
         item={form.tag}
         items={colors}
         changeSelect={changeTag}
         all={false}
       />
       <Select
+        label="Статус"
         item={form.status}
         items={columnTitles}
         changeSelect={changeStatus}

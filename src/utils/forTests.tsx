@@ -50,7 +50,7 @@ export const stateForTests = (
   todos: {
     list: showItems ? getMockTodos : [],
     form: formValues,
-    filter: "all",
+    filter: { search: "", tag: "all" },
     loading: todosLoading || false,
     formLoading: todoLoading || false,
   },

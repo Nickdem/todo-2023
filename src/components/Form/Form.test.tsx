@@ -12,17 +12,17 @@ describe("Тестирование формы авторизации", () => {
     const form = screen.getByTestId("form");
     const title = screen.getByTestId("form-title");
     const labels = screen.getAllByTestId("form-label");
-    const inp = screen.getByTestId("form-input");
+    const inp = screen.getAllByTestId("form-input");
     const ta = screen.getByTestId("form-textarea");
     const selects = screen.getAllByTestId("select");
     const save = screen.getByTestId("save-btn");
 
     expect(form).toBeInTheDocument();
     expect(title).toHaveTextContent("Форма создания задачи");
-    expect(labels).toHaveLength(2);
-    expect(labels[0]).toHaveTextContent("Название");
-    expect(labels[1]).toHaveTextContent("Описание");
-    expect(inp).toBeInTheDocument();
+    expect(labels).toHaveLength(3);
+    expect(labels[1]).toHaveTextContent("Название");
+    expect(labels[2]).toHaveTextContent("Описание");
+    expect(inp[1]).toBeInTheDocument();
     expect(ta).toBeInTheDocument();
     expect(selects[1]).toHaveTextContent("красный");
     expect(selects[2]).toHaveTextContent("К работе");

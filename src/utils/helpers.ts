@@ -13,11 +13,18 @@ export const classNameConcatination = (
   return resultStr.trimEnd();
 };
 
-export const filterTodos = (todos: Array<ITodoObj>, filter: string) => {
-  if (filter === "all") {
+export const filterTodos = (todos: Array<ITodoObj>, filter: IStringObj) => {
+  if (filter.tag === "all" && filter.search.trim() === "") {
     return todos;
   }
-  return todos.filter((todo) => todo.tag === filter);
+
+  if (filter.tag === "all" && filter.search.trim() !== "") {
+    return todos.filter((todo) => todo.title.includes(filter.search));
+  }
+
+  return todos.filter(
+    (todo) => todo.tag === filter.tag && todo.title.includes(filter.search),
+  );
 };
 
 const delayTime = 1500;

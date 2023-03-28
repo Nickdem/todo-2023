@@ -85,6 +85,7 @@ export interface IFormFieldProps {
 }
 
 export interface ISelectProps {
+  label: string;
   item: string;
   items: IStringObj;
   changeSelect: Function;

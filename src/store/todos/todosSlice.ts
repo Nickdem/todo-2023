@@ -53,7 +53,7 @@ export const deleteTodoItem = createAsyncThunk(
 interface ITodosState {
   list: Array<ITodoObj>;
   form: ITodoObj;
-  filter: string;
+  filter: IStringObj;
   loading: boolean;
   formLoading: boolean;
 }
@@ -61,7 +61,7 @@ interface ITodosState {
 const initialState: ITodosState = {
   list: [],
   form: formValues,
-  filter: "all",
+  filter: { tag: "all", search: "" },
   loading: false,
   formLoading: false,
 };
@@ -79,8 +79,8 @@ export const todosSlice = createSlice({
     setFormValues: (state, action: PayloadAction<ITodoObj>) => {
       state.form = action.payload;
     },
-    setFilter: (state, action: PayloadAction<string>) => {
-      state.filter = action.payload;
+    setFilter: (state, action: PayloadAction<IStringObj>) => {
+      state.filter[action.payload.key] = action.payload.value;
     },
   },
   extraReducers: (builder) => {

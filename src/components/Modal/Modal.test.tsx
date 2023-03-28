@@ -15,7 +15,7 @@ describe("Тестирование модального окна", () => {
     expect(modal).toBeInTheDocument();
     expect(backdrop).toBeInTheDocument();
     expect(modal).toHaveTextContent(
-      "Форма создания задачиНазваниеОписаниекрасныйК работеСоздатьx",
+      "Форма создания задачиНазваниеОписаниеТэгкрасныйСтатусК работеСоздатьx",
     );
 
     const close = screen.getByTestId("modal-close");

@@ -1,13 +1,19 @@
 import { fireEvent, screen } from "@testing-library/react";
 import { colors } from "../../utils/consts";
-import { renderWithProviders } from "../../utils/forTests";
+import { renderWithProviders, stateForTests } from "../../utils/forTests";
 import Filter from "../Filter";
 import Select from "./Select";
 
 describe("Отображение селекта", () => {
   it("Селект отображается", () => {
     renderWithProviders(
-      <Select item="red" items={colors} changeSelect={() => {}} all={true} />,
+      <Select
+        label="tags"
+        item="red"
+        items={colors}
+        changeSelect={() => {}}
+        all={true}
+      />,
     );
     const select = screen.getByTestId("select");
 
@@ -16,7 +22,9 @@ describe("Отображение селекта", () => {
   });
 
   it("Селект открывается и закрывается", () => {
-    renderWithProviders(<Filter />);
+    renderWithProviders(<Filter />, {
+      preloadedState: stateForTests("Natalia", "", true),
+    });
     const selectValue = screen.getByTestId("select-value");
 
     expect(selectValue).toBeInTheDocument();

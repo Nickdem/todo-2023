@@ -36,7 +36,9 @@ describe("Отображение элементов приложения", () =>
   });
 
   it("Отображение фильтра", () => {
-    renderWithProviders(<App />);
+    renderWithProviders(<App />, {
+      preloadedState: stateForTests("Nika", "", false),
+    });
     const filterSection = screen.getByTestId("filter");
     const select = screen.getByTestId("select");
 

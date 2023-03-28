@@ -5,6 +5,13 @@
   border: 1px solid var(--main-gray);
 }
 
+.select-label {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
 .select-value {
   display: flex;
   justify-content: flex-start;

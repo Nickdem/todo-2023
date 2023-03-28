@@ -1,10 +1,12 @@
 import { screen } from "@testing-library/react";
 import App from "../../App";
-import { renderWithProviders } from "../../utils/forTests";
+import { renderWithProviders, stateForTests } from "../../utils/forTests";
 
 describe("Тестирование Лайоута", () => {
   it("Отображение лайоута", () => {
-    renderWithProviders(<App />);
+    renderWithProviders(<App />, {
+      preloadedState: stateForTests("Masha", "", true),
+    });
     const header = screen.getByTestId("header");
     const filter = screen.getByTestId("filter");
     const columns = screen.getByTestId("columns");
