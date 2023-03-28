@@ -10,9 +10,10 @@ import store from "./store";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/todo-2023">
       <Error>
         <Provider store={store}>
           <App />
